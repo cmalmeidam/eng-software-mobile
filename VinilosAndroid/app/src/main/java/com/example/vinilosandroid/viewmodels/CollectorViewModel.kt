@@ -28,7 +28,7 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
     private fun refreshDataFromNetwork() {
         NetworkServiceAdapter.getInstance(getApplication()).getCollectors({
             val list = listOf<Collector>()
-            _collectors.postValue(list)
+            _collectors.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
