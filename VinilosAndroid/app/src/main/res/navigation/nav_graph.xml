@@ -17,11 +17,20 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/albumes"
+        android:label="@string/tialbumes"
         tools:layout="@layout/album_fragment" >
         <action
-            android:id="@+id/action_albumFragment_to_collectorFragment"
-            app:destination="@id/collectorFragment" />
+            android:id="@+id/action_albumFragment_to_musicianFragment"
+            app:destination="@id/musicianFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/musicianFragment"
+        android:name="com.example.vinilosandroid.ui.MusicianFragment"
+        android:label="@string/tiartistas"
+        tools:layout="@layout/musician_fragment" >
+        <action
+            android:id="@+id/action_musicianFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
     </fragment>
 </navigation>
