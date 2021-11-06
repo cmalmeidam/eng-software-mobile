@@ -3,10 +3,11 @@ package com.example.vinilosandroid.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Musician
-import com.example.vinilosandroid.network.NetworkServiceAdapter
+import com.example.vinilosandroid.repositories.MusiciansRepository
 
 class MusicianViewModel(application: Application) :  AndroidViewModel(application) {
 
+    private val musiciansRepository = MusiciansRepository(application)
     private val _musicians = MutableLiveData<List<Musician>>()
 
     val musicians: LiveData<List<Musician>>
@@ -27,8 +28,7 @@ class MusicianViewModel(application: Application) :  AndroidViewModel(applicatio
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getMusicians({
-            val list = listOf<Musician>()
+        musiciansRepository.refreshData({
             _musicians.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
