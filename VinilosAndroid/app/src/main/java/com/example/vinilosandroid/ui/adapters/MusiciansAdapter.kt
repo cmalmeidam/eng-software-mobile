@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.MusicianItemBinding
 import com.example.vinilosandroid.models.Musician
-import com.example.vinilosandroid.ui.MusicianFragmentDirections
 import com.squareup.picasso.Picasso
 
 
@@ -40,10 +39,6 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
                 .placeholder(R.drawable.ic_artist)
                 .error(R.drawable.ic_face)
                 .into(it.itemImageIv)
-        }
-        holder.viewDataBinding.root.setOnClickListener{
-            val action = MusicianFragmentDirections.actionMusicianFragmentToCollectorFragment()
-            holder.viewDataBinding.root.findNavController().navigate(action)
         }
     }
 
