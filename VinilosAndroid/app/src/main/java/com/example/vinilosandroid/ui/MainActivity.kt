@@ -10,8 +10,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.ActivityMainBinding
 
@@ -24,15 +26,14 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Get the navigation host fragment from this Activity
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        // Instantiate the navController using the NavHostFragment
+
         navController = navHostFragment.navController
-        // Make sure actions in the ActionBar get propagated to the NavController
-        Log.d("act", navController.toString())
-        setSupportActionBar(findViewById(R.id.my_toolbar))
-        setupActionBarWithNavController(navController)
+        binding.bottomnav.setupWithNavController(navController)
+
+        val initialFragment = intent.getIntExtra("initialFragment",R.id.collectorFragment)
+        navController.navigate(initialFragment)
 
     }
 
