@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.vinyls_jetpack_application.ui.MainActivity">
 
-        <item android:id="@+id/action_album"
+        <item android:id="@+id/albumFragment"
             android:title="@string/albumes"
             android:icon="@drawable/ic_album" />
 
-        <item android:id="@+id/action_musician"
+        <item android:id="@+id/musicianFragment"
             android:title="@string/artistas"
             android:icon="@drawable/ic_artist"/>
 
-        <item android:id="@+id/action_collector"
+        <item android:id="@+id/collectorFragment"
             android:title="@string/coleccionistas"
             android:icon="@drawable/ic_collector" />
 
