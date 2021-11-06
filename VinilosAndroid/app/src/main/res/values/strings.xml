@@ -5,7 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="action_switch">Cambiar</string>
     <string name="albumes">Albumes</string>
+    <string name="tialbumes">Albumes para tí</string>
     <string name="artistas">Artistas</string>
+    <string name="tiartistas">Artistas para tí</string>
     <string name="usuarios">Usuario</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
