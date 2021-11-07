@@ -13,12 +13,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="roboto"
-            android:textStyle="bold"
             android:text="@string/coleccionistas"
             android:textSize="30sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="?attr/colorOnSecondary"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragments_rv"
