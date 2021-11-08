@@ -2,16 +2,16 @@ package com.example.vinilosandroid.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.vinilosandroid.models.Collector
+import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.network.NetworkServiceAdapter
-import com.example.vinilosandroid.repositories.CollectorsRepository
+import com.example.vinilosandroid.repositories.AlbumsRepository
 
-class CollectorViewModel(application: Application) :  AndroidViewModel(application)  {
+class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
 
-    private val collectorsRepository = CollectorsRepository(application)
-    private val _collectors = MutableLiveData<List<Collector>>()
-    val collectors: LiveData<List<Collector>>
-        get() = _collectors
+    private val _albums = MutableLiveData<List<Album>>()
+    private val albumsRepository =AlbumsRepository(application)
+    val albums: LiveData<List<Album>>
+        get() = _albums
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -28,8 +28,8 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
     }
 
     private fun refreshDataFromNetwork() {
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
+        albumsRepository.refreshData({
+            _albums.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
@@ -43,12 +43,12 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CollectorViewModel(app) as T
+                return AlbumViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
-
 }
+

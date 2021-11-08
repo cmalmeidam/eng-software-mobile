@@ -2,16 +2,16 @@ package com.example.vinilosandroid.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.vinilosandroid.models.Collector
-import com.example.vinilosandroid.network.NetworkServiceAdapter
-import com.example.vinilosandroid.repositories.CollectorsRepository
+import com.example.vinilosandroid.models.Musician
+import com.example.vinilosandroid.repositories.MusiciansRepository
 
-class CollectorViewModel(application: Application) :  AndroidViewModel(application)  {
+class MusicianViewModel(application: Application) :  AndroidViewModel(application) {
 
-    private val collectorsRepository = CollectorsRepository(application)
-    private val _collectors = MutableLiveData<List<Collector>>()
-    val collectors: LiveData<List<Collector>>
-        get() = _collectors
+    private val musiciansRepository = MusiciansRepository(application)
+    private val _musicians = MutableLiveData<List<Musician>>()
+
+    val musicians: LiveData<List<Musician>>
+        get() = _musicians
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -28,8 +28,8 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
     }
 
     private fun refreshDataFromNetwork() {
-        collectorsRepository.refreshData({
-            _collectors.postValue(it)
+        musiciansRepository.refreshData({
+            _musicians.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
         },{
@@ -43,12 +43,11 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(MusicianViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CollectorViewModel(app) as T
+                return MusicianViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
-
 }

@@ -1,57 +1,53 @@
 package com.example.vinilosandroid.ui
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
-import com.example.vinilosandroid.databinding.CollectorFragmentBinding
-import com.example.vinilosandroid.models.Collector
-import com.example.vinilosandroid.ui.adapters.CollectorsAdapter
-import com.example.vinilosandroid.viewmodels.CollectorViewModel
+import com.example.vinilosandroid.databinding.MusicianFragmentBinding
+import com.example.vinilosandroid.models.Musician
+import com.example.vinilosandroid.ui.adapters.MusiciansAdapter
+import com.example.vinilosandroid.viewmodels.MusicianViewModel
 
-class CollectorFragment : Fragment() {
-    private var _binding: CollectorFragmentBinding? = null
+class MusicianFragment : Fragment() {
+    private var _binding: MusicianFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: CollectorViewModel
-    private var viewModelAdapter: CollectorsAdapter? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var viewModel: MusicianViewModel
+    private var viewModelAdapter: MusiciansAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = CollectorFragmentBinding.inflate(inflater, container, false)
+        _binding = MusicianFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModelAdapter = CollectorsAdapter()
+        viewModelAdapter = MusiciansAdapter()
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.fragmentsRv
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView = binding.musiciansRv
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
     }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.coleccionistas)
-        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(CollectorViewModel::class.java)
-        viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
+        activity.actionBar?.title = getString(R.string.artistas)
+        viewModel = ViewModelProvider(this, MusicianViewModel.Factory(activity.application)).get(
+            MusicianViewModel::class.java)
+        viewModel.musicians.observe(viewLifecycleOwner, Observer<List<Musician>> {
             it.apply {
-                viewModelAdapter!!.collectors = this
+                viewModelAdapter!!.musicians = this
             }
         })
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
@@ -62,7 +58,6 @@ class CollectorFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
     private fun onNetworkError() {
         if(!viewModel.isNetworkErrorShown.value!!) {
             Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
