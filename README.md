@@ -27,3 +27,14 @@
 7. Validar el funcionamiento
 
 ![Image](https://drive.google.com/uc?export=view&id=1vjoOkR2MU6qHRvSPNAl3pSd85wk0-8ia)
+
+
+Opción B
+
+8. Generar APK
+
+![Image](https://drive.google.com/uc?export=view&id=1lhFM2Br5LRFUPMJfYr6zc6IviBj8YSgN)
+
+9. Instalar en le dispositivo movíl
+
+10. Validar el funcionamiento
