@@ -25,3 +25,5 @@
 
 
 7. Validar el funcionamiento
+
+![Image](https://drive.google.com/uc?export=view&id=1vjoOkR2MU6qHRvSPNAl3pSd85wk0-8ia)
