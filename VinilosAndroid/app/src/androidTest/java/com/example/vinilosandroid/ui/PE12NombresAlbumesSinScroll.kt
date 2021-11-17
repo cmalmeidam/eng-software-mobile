@@ -21,15 +21,15 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class AlbumFragmentTest {
+class PE1NombresAlbumesSinScroll {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun albumFragmentTest() {
-        Thread.sleep(100)
+    fun pE12NombresAlbumesSinScroll() {
+        Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
                 withId(R.id.albumFragment), withContentDescription("Albumes"),
@@ -45,28 +45,8 @@ class AlbumFragmentTest {
         )
         bottomNavigationItemView.perform(click())
 
-
-
-        Thread.sleep(1000)
-        val textView = onView(
-            allOf(
-                withId(R.id.textView7), withText("Albumes para tí"),
-                withParent(withParent(withId(R.id.nav_host_fragment))),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Albumes para tí")))
         Thread.sleep(1000)
 
-        val imageView = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Buscando América"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView.check(matches(isDisplayed()))
-        Thread.sleep(1000)
         val textView2 = onView(
             allOf(
                 withId(R.id.textView5), withText("Buscando América"),
@@ -77,15 +57,6 @@ class AlbumFragmentTest {
         textView2.check(matches(withText("Buscando América")))
         Thread.sleep(1000)
 
-        val imageView2 = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Poeta del pueblo"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView2.check(matches(isDisplayed()))
-        Thread.sleep(1000)
         val textView4 = onView(
             allOf(
                 withId(R.id.textView5), withText("Poeta del pueblo"),
@@ -95,41 +66,7 @@ class AlbumFragmentTest {
         )
         textView4.check(matches(withText("Poeta del pueblo")))
         Thread.sleep(1000)
-        val imageView3 = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("A Night at the Opera"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView3.check(matches(isDisplayed()))
-        Thread.sleep(1000)
-        val textView3 = onView(
-            allOf(
-                withId(R.id.textView5), withText("A Night at the Opera"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView3.check(matches(withText("A Night at the Opera")))
-        Thread.sleep(1000)
-        val imageView4 = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("A Day at the Races"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView4.check(matches(isDisplayed()))
 
-        val textView6 = onView(
-            allOf(
-                withId(R.id.textView5), withText("A Day at the Races"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView6.check(matches(withText("A Day at the Races")))
     }
 
     private fun childAtPosition(
