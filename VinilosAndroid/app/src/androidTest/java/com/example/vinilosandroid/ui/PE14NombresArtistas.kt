@@ -21,14 +21,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ArtistFragmentTest {
+class PE14NombresArtistas {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun artistFragmentTest() {
+    fun pE14NombresArtistas() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -44,24 +44,6 @@ class ArtistFragmentTest {
             )
         )
         bottomNavigationItemView.perform(click())
-        Thread.sleep(1000)
-        val textView = onView(
-            allOf(
-                withId(R.id.textView8), withText("Artistas para tí"),
-                withParent(withParent(withId(R.id.nav_host_fragment))),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Artistas para tí")))
-        Thread.sleep(1000)
-        val imageView = onView(
-            allOf(
-                withId(R.id.item_image_iv), withContentDescription("Rubén Blades Bellido de Luna"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView.check(matches(isDisplayed()))
         Thread.sleep(1000)
         val textView2 = onView(
             allOf(
