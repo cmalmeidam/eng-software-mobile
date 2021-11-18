@@ -9,11 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumItemBinding
 import com.example.vinilosandroid.models.Album
-/*import com.example.vinilosandroid.ui.AlbumFragmentDirections*/
+import com.example.vinilosandroid.ui.AlbumFragmentDirections
 import com.squareup.picasso.Picasso
-
-
-
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
     var albums :List<Album> = emptyList()
@@ -40,12 +37,19 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
                 .error(R.drawable.ic_artist)
                 .into(it.itemCoverIv)
         }
-        /*holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToMusicianFragment()
+        holder.viewDataBinding.root.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToAlbumDetailFragment(
+                albums[position].albumId,
+                albums[position].description,
+                albums[position].cover,
+                albums[position].genre,
+                albums[position].name,
+                albums[position].recordLabel,
+                albums[position].releaseDate
+            )
+            // Navegate
             holder.viewDataBinding.root.findNavController().navigate(action)
-        }*/
-
-
+        }
     }
 
     override fun getItemCount(): Int {

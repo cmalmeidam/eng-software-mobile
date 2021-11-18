@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AlbumDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/returnButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back_24"
+                android:contentDescription="@string/retorno"/>
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:fontFamily="roboto"
+                android:textStyle="bold"
+                android:layout_marginStart="15sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imageAlbum"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@{album.name}"
+                    tools:srcCompat="@drawable/ic_album" />
+                <TextView
+                    android:id="@+id/textdescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="15dp"/>
+            </LinearLayout>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/border">
+                <TextView
+                    android:id="@+id/textGeneroTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/genero_title"/>
+                <TextView
+                    android:id="@+id/textGeneroValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:layout_marginHorizontal="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/border">
+                <TextView
+                    android:id="@+id/textFechaLanzTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/fecha_lanz_title" />
+                <TextView
+                    android:id="@+id/textFechaLanzValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:layout_marginHorizontal="10dp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/border">
+                <TextView
+                    android:id="@+id/textCasaDiscoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/casa_disco_title" />
+                <TextView
+                    android:id="@+id/textCasaDiscoValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="roboto"
+                    android:layout_marginHorizontal="10dp"/>
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

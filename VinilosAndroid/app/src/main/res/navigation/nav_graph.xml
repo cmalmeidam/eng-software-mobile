@@ -16,11 +16,44 @@
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
         android:label="@string/tialbumes"
         tools:layout="@layout/album_fragment" >
+        <action
+            android:id="@+id/action_albumFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
         android:label="@string/tiartistas"
         tools:layout="@layout/musician_fragment" >
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.example.vinilosandroid.ui.AlbumDetailFragment"
+        android:label="album_detail_fragment"
+        tools:layout="@layout/album_detail_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+        <argument
+            android:name="cover"
+            app:argType="string" />
+        <argument
+            android:name="genre"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="recordLabel"
+            app:argType="string" />
+        <argument
+            android:name="releaseDate"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
     </fragment>
 </navigation>
