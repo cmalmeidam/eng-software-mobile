@@ -5,12 +5,8 @@ import com.android.volley.VolleyError
 import com.example.vinilosandroid.models.Musician
 import com.example.vinilosandroid.network.NetworkServiceAdapter
 
-class MusiciansRepository (val application: Application){
-    fun refreshData(callback:(List<Musician>)->Unit, onError:(VolleyError)->Unit){
-        NetworkServiceAdapter.getInstance(application).getMusicians({
-            callback(it)
-        },
-            onError
-        )
+class MusiciansRepository (val application: Application) {
+    suspend fun refreshData(): List<Musician> {
+        return NetworkServiceAdapter.getInstance(application).getMusicians()
     }
 }
