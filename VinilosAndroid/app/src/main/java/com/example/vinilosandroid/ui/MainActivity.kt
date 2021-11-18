@@ -23,9 +23,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         binding.bottomnav.setupWithNavController(navController)
 
-        val initialFragment = intent.getIntExtra("initialFragment",R.id.albumFragment)
-        navController.navigate(initialFragment)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
