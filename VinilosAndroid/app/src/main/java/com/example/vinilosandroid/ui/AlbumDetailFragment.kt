@@ -1,17 +1,18 @@
 package com.example.vinilosandroid.ui
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumDetailFragmentBinding
 import com.example.vinilosandroid.models.Album
 import com.squareup.picasso.Picasso
-
 
 /**
  * A simple [Fragment] subclass.
@@ -47,8 +48,6 @@ class AlbumDetailFragment : Fragment() {
             .error(R.drawable.ic_artist)
             .into(binding.imageAlbum)
 
-        binding.listener = this
-
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,14 +56,6 @@ class AlbumDetailFragment : Fragment() {
         binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
-    }
-
-    // Class to handle view click
-    fun onTextViewClick(view: View) {
-
-        val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToAlbumFragment()
-        view.findNavController().navigate(action)
-
     }
 
 }
