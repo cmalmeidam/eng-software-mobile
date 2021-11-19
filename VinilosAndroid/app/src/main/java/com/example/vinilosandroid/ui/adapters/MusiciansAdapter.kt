@@ -48,11 +48,11 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
         val musician: Musician = musicians[position]
         holder.viewDataBinding.root.setOnClickListener {
             val action = MusicianFragmentDirections.actionMusicianFragmentToMusicianDetailFragment(
-                musicians[position].musicianId,
-                musicians[position].birthDate,
-                musicians[position].description,
-                musicians[position].image,
-                musicians[position].name
+                musician.musicianId,
+                musician.birthDate,
+                musician.description,
+                musician.image,
+                musician.name
             )
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
