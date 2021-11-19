@@ -1,17 +1,14 @@
 package com.example.vinilosandroid.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.MusicianItemBinding
 import com.example.vinilosandroid.models.Musician
-import com.example.vinilosandroid.ui.MusicianDetailFragment
 import com.example.vinilosandroid.ui.MusicianFragmentDirections
 /*import com.example.vinilosandroid.ui.MusicianFragmentDirections*/
 import com.squareup.picasso.Picasso

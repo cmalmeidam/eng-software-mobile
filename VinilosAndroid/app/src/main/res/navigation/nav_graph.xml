@@ -30,7 +30,7 @@
         android:id="@+id/musicianDetailFragment"
         android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
         android:label="@string/tiartistas"
-        tools:layout="@layout/musician_detail_fragment" >
+        tools:layout="@layout/fragment_musician_detail" >
         <action
             android:id="@+id/action_musicianDetailFragment_to_musicianFragment"
             app:destination="@id/musicianFragment" />

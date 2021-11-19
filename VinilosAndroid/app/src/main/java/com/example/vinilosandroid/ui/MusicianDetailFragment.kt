@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.vinilosandroid.R
-import com.example.vinilosandroid.databinding.MusicianDetailFragmentBinding
+import com.example.vinilosandroid.databinding.FragmentMusicianDetailBinding
 import com.example.vinilosandroid.models.Musician
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
@@ -22,16 +22,19 @@ import java.util.*
  * Use the [MusicianDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
-
 class MusicianDetailFragment : Fragment() {
-    private lateinit var binding = MusicianDetailFragmentBinding
+
+    private lateinit var binding : FragmentMusicianDetailBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = MusicianDetailFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentMusicianDetailBinding.inflate(inflater, container, false)
         var view = binding.root
         return view
     }
@@ -41,8 +44,8 @@ class MusicianDetailFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.tiartistas)
         val args: MusicianDetailFragmentArgs by navArgs()
+        activity.actionBar?.title = getString(R.string.tiartistas)
         var birthDate = args.birthDate.toString()
         var finalDate: String? = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -62,6 +65,7 @@ class MusicianDetailFragment : Fragment() {
             .load(args.image)
             .placeholder(R.drawable.ic_artist)
             .error(R.drawable.ic_face)
-            .into(binding.detail_image_iv)
+            .into(binding.detailImageIv)
     }
+
 }
