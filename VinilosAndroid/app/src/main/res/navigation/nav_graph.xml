@@ -22,5 +22,32 @@
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
         android:label="@string/tiartistas"
         tools:layout="@layout/musician_fragment" >
+        <action
+            android:id="@+id/action_musicianFragment_to_musicianDetailFragment"
+            app:destination="@id/musicianDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicianDetailFragment"
+        android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
+        android:label="@string/tiartistas"
+        tools:layout="@layout/musician_detail_fragment" >
+        <action
+            android:id="@+id/action_musicianDetailFragment_to_musicianFragment"
+            app:destination="@id/musicianFragment" />
+        <argument
+            android:name="musicianId"
+            app:argType="integer" />
+        <argument
+            android:name="birthDate"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>
