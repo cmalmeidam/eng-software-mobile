@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.ActivityMainBinding
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
         binding.bottomnav.setupWithNavController(navController)
+
+        val initialFragment = intent.getIntExtra("initialFragment",R.id.albumFragment)
+        navController.navigate(initialFragment)
+
+        val appBarConfiguration = AppBarConfiguration(        topLevelDestinationIds = setOf(),
+            fallbackOnNavigateUpListener = ::onSupportNavigateUp)
+        binding.myToolbar.setupWithNavController(navController, appBarConfiguration)
 
     }
 

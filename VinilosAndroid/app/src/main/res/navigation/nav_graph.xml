@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/tialbumes"
+        android:label="@string/albumes"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
-        android:label="@string/tiartistas"
+        android:label="@string/artistas"
         tools:layout="@layout/musician_fragment" >
     </fragment>
     <fragment

@@ -26,4 +26,9 @@
 
     <style name="Theme.VinilosAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ToolbarTheme" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
 </resources>
