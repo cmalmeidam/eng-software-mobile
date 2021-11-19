@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/collectorFragment">
+    app:startDestination="@id/albumFragment">
 
     <fragment
         android:id="@+id/collectorFragment"
@@ -14,13 +14,13 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/tialbumes"
+        android:label="@string/albumes"
         tools:layout="@layout/album_fragment" >
     </fragment>
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
-        android:label="@string/tiartistas"
+        android:label="@string/artistas"
         tools:layout="@layout/musician_fragment" >
         <action
             android:id="@+id/action_musicianFragment_to_musicianDetailFragment"

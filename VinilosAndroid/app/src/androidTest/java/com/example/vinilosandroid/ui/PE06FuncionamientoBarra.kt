@@ -1,5 +1,6 @@
 package com.example.vinilosandroid.ui
 
+
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
@@ -21,16 +22,66 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class CollectorFragmentTest {
+
+class PE06FuncionamientoBarra {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun collectorFragmentTest() {
+    fun pE06FuncionamientoBarra() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
+            allOf(
+                withId(R.id.musicianFragment), withContentDescription("Artistas"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottomnav),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        bottomNavigationItemView.perform(click())
+        Thread.sleep(100)
+        val textView = onView(
+            allOf(
+                withId(R.id.textView8), withText("Artistas para tí"),
+                withParent(withParent(withId(R.id.nav_host_fragment))),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("Artistas para tí")))
+
+        Thread.sleep(1000)
+        val bottomNavigationItemView2 = onView(
+            allOf(
+                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottomnav),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        bottomNavigationItemView2.perform(click())
+        Thread.sleep(1000)
+        val textView2 = onView(
+            allOf(
+                withId(R.id.textView7), withText("Albumes para tí"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
+        )
+        textView2.check(matches(withText("Albumes para tí")))
+        Thread.sleep(1000)
+        val bottomNavigationItemView3 = onView(
             allOf(
                 withId(R.id.collectorFragment), withContentDescription("Coleccionistas"),
                 childAtPosition(
@@ -43,71 +94,16 @@ class CollectorFragmentTest {
                 isDisplayed()
             )
         )
-        bottomNavigationItemView.perform(click())
-        Thread.sleep(1000)
-        val textView = onView(
+        bottomNavigationItemView3.perform(click())
+
+        val textView3 = onView(
             allOf(
                 withId(R.id.textView6), withText("Coleccionistas"),
                 withParent(withParent(withId(R.id.nav_host_fragment))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Coleccionistas")))
-        Thread.sleep(1000)
-        val textView2 = onView(
-            allOf(
-                withId(R.id.textView2), withText("Manolo Bellon"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Manolo Bellon")))
-        Thread.sleep(1000)
-        val textView3 = onView(
-            allOf(
-                withId(R.id.textView2), withText("Jaime Monsalve"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView3.check(matches(withText("Jaime Monsalve")))
-        Thread.sleep(1000)
-        val textView4 = onView(
-            allOf(
-                withId(R.id.textView3), withText("3502457896"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView4.check(matches(withText("3502457896")))
-        Thread.sleep(1000)
-        val textView5 = onView(
-            allOf(
-                withId(R.id.textView3), withText("3012357936"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView5.check(matches(withText("3012357936")))
-        Thread.sleep(1000)
-        val textView6 = onView(
-            allOf(
-                withId(R.id.textView4), withText("manollo@caracol.com.co"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView6.check(matches(withText("manollo@caracol.com.co")))
-        Thread.sleep(1000)
-        val textView7 = onView(
-            allOf(
-                withId(R.id.textView4), withText("jmonsalve@rtvc.com.co"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView7.check(matches(withText("jmonsalve@rtvc.com.co")))
-        Thread.sleep(1000)
+        textView3.check(matches(withText("Coleccionistas")))
     }
 
     private fun childAtPosition(
