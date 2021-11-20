@@ -33,7 +33,7 @@ class AlbumFragment : Fragment() {
     ): View? {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        _binding!!.createAlbum.setOnClickListener {
+        _binding!!.createAlbumButton.setOnClickListener {
             println("Holaaaa")
         }
         viewModelAdapter = AlbumsAdapter()

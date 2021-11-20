@@ -80,4 +80,9 @@
             android:name="releaseDate"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/createAlbum"
+        android:name="com.example.vinilosandroid.ui.CreateAlbum"
+        android:label="fragment_create_album"
+        tools:layout="@layout/fragment_create_album" />
 </navigation>
