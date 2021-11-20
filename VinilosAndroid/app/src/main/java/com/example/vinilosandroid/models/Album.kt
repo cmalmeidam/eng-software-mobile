@@ -1,6 +1,6 @@
 package com.example.vinilosandroid.models
 
-class Album (
+class Album   (
     val albumId:Int,
     val name:String,
     val cover:String,
