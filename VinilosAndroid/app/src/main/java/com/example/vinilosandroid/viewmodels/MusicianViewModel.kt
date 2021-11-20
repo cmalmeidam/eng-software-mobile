@@ -1,9 +1,15 @@
 package com.example.vinilosandroid.viewmodels
 
 import android.app.Application
+import android.os.Build
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Musician
 import com.example.vinilosandroid.repositories.MusiciansRepository
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MusicianViewModel(application: Application) :  AndroidViewModel(application) {
 
@@ -49,5 +55,23 @@ class MusicianViewModel(application: Application) :  AndroidViewModel(applicatio
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
+    }
+    fun formateandoDate(birthDate:String): String {
+        val birthDate = birthDate
+        var finalDate: String? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            var odt = OffsetDateTime.parse(birthDate)
+            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+            finalDate = formatter.format(odt)
+        } else
+        {
+            val originalFormat: DateFormat =
+                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+            val targetFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+            val originDate: Date = originalFormat.parse(birthDate)
+            finalDate = targetFormat.format(originDate)
+        }
+        return finalDate
     }
 }
