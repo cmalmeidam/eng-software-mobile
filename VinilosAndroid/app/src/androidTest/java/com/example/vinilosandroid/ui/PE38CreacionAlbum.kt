@@ -4,6 +4,7 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -16,20 +17,21 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE31CreacionAlbumDescripcionVacia {
+class PE38CreacionAlbum {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE31CreacionAlbumDescripcionVacia() {
+    fun pE38CreacionAlbum() {
         val botonCrearAlbum = onView(
             allOf(
                 withId(R.id.createAlbumButton),
@@ -43,9 +45,6 @@ class PE31CreacionAlbumDescripcionVacia {
             )
         )
         botonCrearAlbum.perform(scrollTo(), click())
-
-        Thread.sleep(50)
-
 
         val inputNombreAlbum = onView(
             allOf(
@@ -65,8 +64,6 @@ class PE31CreacionAlbumDescripcionVacia {
         )
         inputNombreAlbum.perform(replaceText("Angles"), closeSoftKeyboard())
 
-        Thread.sleep(50)
-
         val inputFechaDeLanzamiento = onView(
             allOf(
                 withId(R.id.albumReleaseDate),
@@ -84,8 +81,6 @@ class PE31CreacionAlbumDescripcionVacia {
             )
         )
         inputFechaDeLanzamiento.perform(replaceText("15/10/2010"), closeSoftKeyboard())
-
-        Thread.sleep(50)
 
         val inputURLCoverAlbum = onView(
             allOf(
@@ -110,6 +105,25 @@ class PE31CreacionAlbumDescripcionVacia {
 
         Thread.sleep(50)
 
+        val inputAlbumDescription = onView(
+            allOf(
+                withId(R.id.albumdescription),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.frameLayout),
+                        childAtPosition(
+                            withId(R.id.nav_host_fragment),
+                            0
+                        )
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        inputAlbumDescription.perform(replaceText("Strokes Album"), closeSoftKeyboard())
+
+
         val materialButton = onView(
             allOf(
                 withId(R.id.crearAlbumBtn), withText("Crear Album"),
@@ -128,20 +142,14 @@ class PE31CreacionAlbumDescripcionVacia {
         )
         materialButton.perform(click())
 
-
-        val button = onView(
+        val textView = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("CREAR ALBUM"),
-                withParent(
-                    allOf(
-                        withId(R.id.frameLayout),
-                        withParent(withId(R.id.nav_host_fragment))
-                    )
-                ),
+                withId(R.id.textName), withText("Angles"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
                 isDisplayed()
             )
         )
-        button.check(matches(isDisplayed()))
+        textView.check(matches(withText("Angles")))
     }
 
     private fun childAtPosition(
