@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.MusicianItemBinding
 import com.example.vinilosandroid.models.Musician
+import com.example.vinilosandroid.ui.MusicianFragmentDirections
 /*import com.example.vinilosandroid.ui.MusicianFragmentDirections*/
 import com.squareup.picasso.Picasso
 
@@ -41,11 +42,17 @@ class MusiciansAdapter : RecyclerView.Adapter<MusiciansAdapter.MusicianViewHolde
                 .error(R.drawable.ic_face)
                 .into(it.itemImageIv)
         }
-        /*holder.viewDataBinding.root.setOnClickListener {
-            val action = MusicianFragmentDirections.actionMusicianFragmentToCollectorFragment()
+        val musician: Musician = musicians[position]
+        holder.viewDataBinding.root.setOnClickListener {
+            val action = MusicianFragmentDirections.actionMusicianFragmentToMusicianDetailFragment(
+                musician.musicianId,
+                musician.birthDate,
+                musician.description,
+                musician.image,
+                musician.name
+            )
             holder.viewDataBinding.root.findNavController().navigate(action)
-        }*/
-
+        }
     }
 
     override fun getItemCount(): Int {
