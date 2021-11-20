@@ -17,7 +17,6 @@ import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
-import android.R
 import androidx.fragment.app.FragmentTransaction
 
 
@@ -35,11 +34,7 @@ class AlbumFragment : Fragment() {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         _binding!!.createAlbum.setOnClickListener {
-            requireActivity()
-                .supportFragmentManager
-                .beginTransaction()
-                .replace(com.example.vinilosandroid.R.id.container, FragmentCreateAlbumBindingte)
-                .commitNow()
+            println("Holaaaa")
         }
         viewModelAdapter = AlbumsAdapter()
         return view
