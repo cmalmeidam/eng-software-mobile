@@ -23,4 +23,9 @@
         android:label="@string/artistas"
         tools:layout="@layout/musician_fragment" >
     </fragment>
+    <fragment
+        android:id="@+id/create_album"
+        android:name="com.example.vinilosandroid.create_album"
+        android:label="fragment_create_album"
+        tools:layout="@layout/fragment_create_album" />
 </navigation>

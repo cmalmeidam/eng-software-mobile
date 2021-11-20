@@ -14,4 +14,10 @@ class AlbumsRepository (val application: Application){
         )
     }
 
-}
+    fun postData(callback:(List<Album>)->Unit, onError:(VolleyError)->Unit){
+        NetworkServiceAdapter.getInstance(application).postAlbum({
+            callback(it)
+        },
+            onError
+        )
+    }}

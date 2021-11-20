@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,9 +13,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumFragmentBinding
+import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
+import android.R
+import androidx.fragment.app.FragmentTransaction
+
 
 class AlbumFragment : Fragment() {
     private var _binding: AlbumFragmentBinding? = null
@@ -29,6 +34,13 @@ class AlbumFragment : Fragment() {
     ): View? {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
+        _binding!!.createAlbum.setOnClickListener {
+            requireActivity()
+                .supportFragmentManager
+                .beginTransaction()
+                .replace(com.example.vinilosandroid.R.id.container, FragmentCreateAlbumBindingte)
+                .commitNow()
+        }
         viewModelAdapter = AlbumsAdapter()
         return view
     }
@@ -64,3 +76,5 @@ class AlbumFragment : Fragment() {
         }
     }
 }
+
+
