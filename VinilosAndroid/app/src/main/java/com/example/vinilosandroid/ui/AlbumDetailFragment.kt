@@ -44,8 +44,8 @@ class AlbumDetailFragment : Fragment() {
         )
         Picasso.get()
             .load(args.cover)
-            .placeholder(R.drawable.ic_album)
-            .error(R.drawable.ic_artist)
+            .placeholder(R.drawable.ic_album2)
+            .error(R.drawable.ic_album2)
             .into(binding.imageAlbum)
 
     }
