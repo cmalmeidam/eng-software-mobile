@@ -84,32 +84,53 @@ class NetworkServiceAdapter  constructor(context: Context) {
             }))
     }
 
-    fun postAlbum(onComplete:(resp:List<Album>)->Unit, onError: (error: VolleyError)->Unit) {
+    fun postAlbum(
+        onComplete: (String) -> Unit,
+        onError: (error: VolleyError) -> Unit,
+        albumnName: String,
+        albumCover: String,
+        albumGenre: String,
+        albumDescription: String,
+        albumRecordLabel: String,
+        albumDate: String
+    ) {
         requestQueue.add(postRequest("albums",
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
-
+                onComplete("success")
             },
             Response.ErrorListener {
                 onError(it)
-            }))
+            },
+            albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+        ))
     }
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }
 
-    private fun postRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): JsonObjectRequest {
+    private fun postRequest(
+        path: String,
+        responseListener: Response.Listener<String>,
+        errorListener: Response.ErrorListener,
+        albumnName: String,
+        albumCover: String,
+        albumGenre: String,
+        albumDescription: String,
+        albumRecordLabel: String,
+        albumDate: String
+    ): JsonObjectRequest {
         val postUrl: String = BASE_URL + path
 
         val postData = JSONObject()
         try {
-            postData.put("name", "Test")
-            postData.put("cover", "https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg")
-            postData.put("releaseDate", "1984-08-01T00:00:00-05:00")
-            postData.put("description", "Buscando América es el primer álbum de la banda de Rubén Blades y Seis del Solar lanzado en 1984. La producción, bajo el sello Elektra, fusiona diferentes ritmos musicales tales como la salsa, reggae, rock, y el jazz latino. El disco fue grabado en Eurosound Studios en Nueva York entre mayo y agosto de 1983.")
-            postData.put("genre", "Salsa")
-            postData.put("recordLabel", "Elektra")
+            postData.put("name", albumnName)
+            postData.put("cover", albumCover)
+            postData.put("releaseDate", albumDate)
+            postData.put("description", albumDescription)
+            postData.put("genre", albumGenre)
+            postData.put("recordLabel", albumRecordLabel)
         } catch (e: JSONException) {
             e.printStackTrace()
         }

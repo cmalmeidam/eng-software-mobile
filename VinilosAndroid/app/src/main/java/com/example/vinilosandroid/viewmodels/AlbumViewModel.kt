@@ -3,7 +3,6 @@ package com.example.vinilosandroid.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Album
-import com.example.vinilosandroid.network.NetworkServiceAdapter
 import com.example.vinilosandroid.repositories.AlbumsRepository
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
@@ -30,16 +29,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
 
     private fun refreshDataFromNetwork() {
         albumsRepository.refreshData({
-            _albums.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
-            _eventNetworkError.value = true
-        })
-    }
-
-    private fun postDataFromNetwork() {
-        albumsRepository.postData({
             _albums.postValue(it)
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
