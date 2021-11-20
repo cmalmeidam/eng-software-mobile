@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumFragmentBinding
-import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
-import androidx.fragment.app.FragmentTransaction
+import com.example.vinilosandroid.ui.AlbumFragmentDirections
 
 
 class AlbumFragment : Fragment() {
@@ -33,9 +32,6 @@ class AlbumFragment : Fragment() {
     ): View? {
         _binding = AlbumFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
-        _binding!!.createAlbumButton.setOnClickListener {
-            println("Holaaaa")
-        }
         viewModelAdapter = AlbumsAdapter()
         return view
     }
@@ -43,6 +39,10 @@ class AlbumFragment : Fragment() {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
+        _binding!!.createAlbumButton.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
+            _binding!!.createAlbumButton.findNavController().navigate(action)
+        }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

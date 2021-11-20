@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumFragment_to_createAlbum"
+            app:destination="@id/createAlbum" />
     </fragment>
     <fragment
         android:id="@+id/musicianFragment"
