@@ -1,12 +1,13 @@
 package com.example.vinilosandroid.ui
 
+
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -14,6 +15,7 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -23,14 +25,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE10ImagenesAlbumes {
+class PE37NavegacionBackArrowDetalle {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE10ImagenesAlbumes() {
+    fun pE37NavegacionBackArrowDetalle() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -47,38 +49,62 @@ class PE10ImagenesAlbumes {
         )
         bottomNavigationItemView.perform(click())
 
-        Thread.sleep(1000)
-
-        val imageView = onView(
+        val recyclerView = onView(
             allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Buscando América"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
+                withId(R.id.albums_rv),
+                childAtPosition(
+                    withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                    1
+                )
+            )
+        )
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(1, click()))
+        Thread.sleep(1000)
+        val textView = onView(
+            allOf(
+                withText("Detalle Álbum"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
                 isDisplayed()
             )
         )
-        imageView.check(matches(isDisplayed()))
-        Thread.sleep(1000)
+        textView.check(matches(withText("Detalle Álbum")))
 
-        val imageView2 = onView(
+        val appCompatImageButton = onView(
             allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Poeta del pueblo"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            0
+                        )
+                    ),
+                    1
+                ),
                 isDisplayed()
             )
         )
-        imageView2.check(matches(isDisplayed()))
+        appCompatImageButton.perform(click())
         Thread.sleep(1000)
-        val imageView3 = onView(
+        val textView2 = onView(
             allOf(
-                withId(R.id.item_cover_iv), withContentDescription("A Night at the Opera"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
+                withText("Albumes"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
                 isDisplayed()
             )
         )
-        imageView3.check(matches(isDisplayed()))
-        Thread.sleep(1000)
-
-        onView(withContentDescription("A Day at the Races")).perform(scrollTo()).check(matches(isDisplayed()))
+        textView2.check(matches(withText("Albumes")))
     }
 
     private fun childAtPosition(
