@@ -20,11 +20,56 @@
         android:id="@+id/textInputEditText"
         android:layout_width="193dp"
         android:layout_height="48dp"
-        android:hint="albumName"
+        android:hint="@string/albumname"
+        android:hintTextColor="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintVertical_bias="0.301" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText2"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:hint="@string/albumcover"
+        android:hintTextColor="#757575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText3"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:hint="@string/albumdescription"
+        android:hintTextColor="#757575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603" />
+
+    <EditText
+        android:id="@+id/albumReleaseDate"
+        android:layout_width="195dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="280dp" />
+
+    <TextView
+        android:id="@+id/createAlbumMenuTitle"
+        android:layout_width="189dp"
+        android:layout_height="37dp"
+        android:text="@string/createAlbumMenuTitle"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="46dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
