@@ -1,5 +1,6 @@
 package com.example.vinilosandroid.network
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.LruCache
 import android.util.SparseArray
 import androidx.collection.ArrayMap
@@ -17,36 +18,45 @@ class CacheManager(context: Context) {
                     instance = it
                 }
             }
+            const val APP_SPREFS = "com.example.vinilosandroid.app"
+            const val ALBUMS_SPREFS = "com.example.vinilosandroid.app.albums"
+            const val MUSICIANS_SPREFS = "com.example.vinilosandroid.app.musicians"
+            const val COLLECTORS_SPREFS = "com.example.vinilosandroid.app.collectors"
+            fun getPrefs(context: Context, name:String): SharedPreferences {
+                return context.getSharedPreferences(name,
+                    Context.MODE_PRIVATE
+                )
+            }
     }
-    private var collectors: LruCache<Int,List<Collector>> = LruCache(3)
-    private var musicians: LruCache<Int,List<Musician>> = LruCache(3)
-    private var albums: LruCache<Int,List<Album>> = LruCache(3)
+    private var collectors: ArrayMap<Int,List<Collector>> = arrayMapOf()
+    private var musicians: ArrayMap<Int,List<Musician>> = arrayMapOf()
+    private var albums: ArrayMap<Int,List<Album>> = arrayMapOf()
     fun addCollectors( key: Int, collector: List<Collector>) {
-        if (collectors[key]==null) {
-            collectors.put(key,collector)
+        if (!collectors.containsKey(key)){
+            collectors[key] = collector
         }
     }
 
     fun getCollectors(key: Int) : List<Collector> {
-        return return if (collectors[key]!=null) collectors[key]!! else listOf<Collector>()
+        return return if (collectors.containsKey(key)) collectors[key]!! else listOf<Collector>()
     }
 
     fun addMusicians( key: Int, musician: List<Musician>) {
-        if (musicians[key]==null) {
-            musicians.put(key,musician)
+        if (musicians.containsKey(key)) {
+            musicians[key] = musician
         }
     }
 
     fun getMusicians(key: Int) : List<Musician> {
-        return return if (musicians[key]!=null) musicians[key]!! else listOf<Musician>()
+        return return if (musicians.containsKey(key)) musicians[key]!! else listOf<Musician>()
     }
     fun addAlbums( key: Int, album: List<Album>) {
-        if (albums[key]==null) {
-            albums.put(key,album)
+        if (albums.containsKey(key)) {
+            albums[key] = album
         }
     }
 
     fun getAlbums(key: Int) : List<Album> {
-        return return if (albums[key]!=null) albums[key]!! else listOf<Album>()
+        return return if (albums.containsKey(key)) albums[key]!! else listOf<Album>()
     }
 }
