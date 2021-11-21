@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
@@ -48,17 +49,11 @@ class PE34CasaDiscografica {
             )
         )
         bottomNavigationItemView.perform(click())
+        Thread.sleep(1000)
+        onView(withText("Buscando América"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
 
-        val recyclerView = onView(
-            allOf(
-                withId(R.id.albums_rv),
-                childAtPosition(
-                    withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
         Thread.sleep(1000)
         val textView = onView(
             allOf(

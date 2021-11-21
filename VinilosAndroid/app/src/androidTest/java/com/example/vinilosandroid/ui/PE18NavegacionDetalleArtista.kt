@@ -25,14 +25,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE28NavegacionDetalle {
+class PE18NavegacionDetalleArtista {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE28NavegacionDetalle() {
+    fun pE18NavegacionDetalle() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(

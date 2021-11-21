@@ -24,14 +24,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE38CreacionAlbum {
+class PE24CreacionAlbum {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE38CreacionAlbum() {
+    fun pE24CreacionAlbum() {
         val botonCrearAlbum = onView(
             allOf(
                 withId(R.id.createAlbumButton),
@@ -45,7 +45,6 @@ class PE38CreacionAlbum {
             )
         )
         botonCrearAlbum.perform(scrollTo(), click())
-
         val inputNombreAlbum = onView(
             allOf(
                 withId(R.id.albumname),

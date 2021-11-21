@@ -2,7 +2,6 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -13,18 +12,17 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 
-class PE40CreacionAlbumFechaVacia {
+class PE29CreacionUrlvacia {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE40CreacionAlbumFechaVacia() {
+    fun pE29creacionUrlVacia() {
         val botonCrearAlbum = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.createAlbumButton),
@@ -40,7 +38,6 @@ class PE40CreacionAlbumFechaVacia {
         botonCrearAlbum.perform(ViewActions.scrollTo(), ViewActions.click())
 
         Thread.sleep(50)
-
         val inputNombreAlbum = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.albumname),
@@ -62,10 +59,10 @@ class PE40CreacionAlbumFechaVacia {
             ViewActions.closeSoftKeyboard()
         )
 
-        Thread.sleep(50)
-        val inputURLCoverAlbum = Espresso.onView(
+
+        val inputFechaDeLanzamiento = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.albumcover),
+                ViewMatchers.withId(R.id.albumReleaseDate),
                 childAtPosition(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
@@ -74,14 +71,14 @@ class PE40CreacionAlbumFechaVacia {
                             0
                         )
                     ),
-                    2
+                    4
                 ),
                 ViewMatchers.isDisplayed()
             )
         )
-
-        inputURLCoverAlbum.perform(
-            ViewActions.replaceText("https://m.media-amazon.com/images/I/81-wt1kTStL._SL1500_.jpg"),
+        inputFechaDeLanzamiento.perform(
+            ViewActions.replaceText("15/10/2010"),
+            ViewActions.closeSoftKeyboard()
         )
 
         Thread.sleep(50)

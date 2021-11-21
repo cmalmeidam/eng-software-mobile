@@ -2,6 +2,7 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -12,17 +13,18 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 
-class PE41CreacionAlbumNombreVacio {
+class PE27CreacionAlbumFechaVacia {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE41creacionAlbumNombreVacio() {
+    fun pE27CreacionAlbumFechaVacia() {
         val botonCrearAlbum = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.createAlbumButton),
@@ -39,10 +41,9 @@ class PE41CreacionAlbumNombreVacio {
 
         Thread.sleep(50)
 
-
-        val inputFechaDeLanzamiento = Espresso.onView(
+        val inputNombreAlbum = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.albumReleaseDate),
+                ViewMatchers.withId(R.id.albumname),
                 childAtPosition(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
@@ -51,18 +52,17 @@ class PE41CreacionAlbumNombreVacio {
                             0
                         )
                     ),
-                    4
+                    1
                 ),
                 ViewMatchers.isDisplayed()
             )
         )
-        inputFechaDeLanzamiento.perform(
-            ViewActions.replaceText("15/10/2010"),
+        inputNombreAlbum.perform(
+            ViewActions.replaceText("Angles"),
             ViewActions.closeSoftKeyboard()
         )
 
         Thread.sleep(50)
-
         val inputURLCoverAlbum = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.albumcover),

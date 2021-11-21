@@ -85,11 +85,12 @@
     </fragment>
     <fragment
         android:id="@+id/createAlbum"
-        android:name="com.example.vinilosandroid.ui.CreateAlbum"
-        android:label="fragment_create_album"
+        android:name="com.example.vinilosandroid.ui.CreateAlbumFragment"
+        android:label="@string/createAlbumMenuTitle"
         tools:layout="@layout/fragment_create_album" >
         <action
             android:id="@+id/action_createAlbum_to_albumDetailFragment"
-            app:destination="@id/albumDetailFragment" />
+            app:destination="@id/albumDetailFragment"
+            app:popUpTo="@id/albumFragment" />
     </fragment>
 </navigation>

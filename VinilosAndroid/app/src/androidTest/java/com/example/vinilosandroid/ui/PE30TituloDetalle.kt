@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -48,18 +50,11 @@ class PE30TituloDetalle {
             )
         )
         bottomNavigationItemView.perform(click())
+        onView(withText("Buscando América"))
+            .perform(ViewActions.scrollTo())
+            .perform(ViewActions.click())
 
-        val recyclerView = onView(
-            allOf(
-                withId(R.id.albums_rv),
-                childAtPosition(
-                    withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
-
+        Thread.sleep(1000)
         val textView = onView(
             allOf(
                 withId(R.id.textName), withText("Buscando América"),
@@ -78,6 +73,7 @@ class PE30TituloDetalle {
         )
         textView2.check(matches(withText("Buscando América")))
     }
+
 
     private fun childAtPosition(
         parentMatcher: Matcher<View>, position: Int

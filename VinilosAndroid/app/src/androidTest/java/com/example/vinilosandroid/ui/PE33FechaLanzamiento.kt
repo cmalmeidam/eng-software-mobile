@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
@@ -50,17 +51,13 @@ class PE33FechaLanzamiento {
         )
         bottomNavigationItemView.perform(click())
 
-        val recyclerView2 = onView(
-            allOf(
-                withId(R.id.albums_rv),
-                childAtPosition(
-                    withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView2.perform(actionOnItemAtPosition<ViewHolder>(3, click()))
+
         Thread.sleep(1000)
+        onView(withText("A Day at the Races"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
+
+
         val textView = onView(
             allOf(
                 withId(R.id.textFechaLanzTitle), withText("Fecha de Lanzamiento"),

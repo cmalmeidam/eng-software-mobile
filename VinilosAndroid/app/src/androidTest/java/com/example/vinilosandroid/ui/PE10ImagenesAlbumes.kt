@@ -6,6 +6,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -48,34 +49,20 @@ class PE10ImagenesAlbumes {
         bottomNavigationItemView.perform(click())
 
         Thread.sleep(1000)
+        onView(withContentDescription("Buscando América"))
+            .perform(scrollTo())
+            .check(matches(isDisplayed()))
 
-        val imageView = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Buscando América"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView.check(matches(isDisplayed()))
+        Thread.sleep(1000)
+        onView(withContentDescription("Poeta del pueblo"))
+            .perform(scrollTo())
+            .check(matches(isDisplayed()))
         Thread.sleep(1000)
 
-        val imageView2 = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Poeta del pueblo"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView2.check(matches(isDisplayed()))
-        Thread.sleep(1000)
-        val imageView3 = onView(
-            allOf(
-                withId(R.id.item_cover_iv), withContentDescription("A Night at the Opera"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView3.check(matches(isDisplayed()))
+        onView(withContentDescription("A Night at the Opera"))
+            .perform(scrollTo())
+            .check(matches(isDisplayed()))
+
         Thread.sleep(1000)
 
         onView(withContentDescription("A Day at the Races")).perform(scrollTo()).check(matches(isDisplayed()))
