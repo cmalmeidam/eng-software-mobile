@@ -50,7 +50,6 @@
         android:layout_height="48dp"
         android:ems="10"
         android:hint="@string/albumdateformat"
-        android:inputType="date"
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

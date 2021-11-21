@@ -9,9 +9,6 @@
     <string name="casa_disco_title">Casa discográfica</string>
     <string name="fecha_lanz_title">Fecha de Lanzamiento</string>
     <string name="genero_title">Género</string>
-    <string name="albumname">Nombre</string>
-    <string name="albumcover">URL Portada</string>
-    <string name="albumdescription">Descripción</string>
     <string name="albumdateformat">dd/mm/yyyy</string>
     <string name="createAlbum">Crear Album</string>
     <string name="albumNameTitle">Nombre del Album</string>

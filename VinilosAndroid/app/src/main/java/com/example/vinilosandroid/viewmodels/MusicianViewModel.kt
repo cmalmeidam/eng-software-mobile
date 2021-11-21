@@ -5,6 +5,9 @@ import android.os.Build
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Musician
 import com.example.vinilosandroid.repositories.MusiciansRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.OffsetDateTime
@@ -34,13 +37,19 @@ class MusicianViewModel(application: Application) :  AndroidViewModel(applicatio
     }
 
     private fun refreshDataFromNetwork() {
-        musiciansRepository.refreshData({
-            _musicians.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = musiciansRepository.refreshData()
+                    _musicians.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {

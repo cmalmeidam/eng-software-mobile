@@ -12,6 +12,9 @@ import com.example.vinilosandroid.repositories.AlbumsRepository
 import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
 import java.lang.Exception
 import java.text.SimpleDateFormat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
 
@@ -35,13 +38,19 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData({
-            _albums.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = albumsRepository.refreshData()
+                    _albums.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {
@@ -56,10 +65,23 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         albumRecordLabel: String,
         albumDate: String
     ) {
-        val albumsRepository =AlbumsRepository(application)
-        albumsRepository.postData({
-        },{_eventNetworkError.value = true
-        }, albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate)
+        try {
+            val albumsRepository = AlbumsRepository(application)
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    albumsRepository.postData(
+                        albumnName,
+                        albumCover,
+                        albumGenre,
+                        albumDescription,
+                        albumRecordLabel,
+                        albumDate
+                    )
+                }
+            }
+        } catch (e: Exception) {
+            _eventNetworkError.value = true
+        }
     }
     fun processInformation(_binding : FragmentCreateAlbumBinding, activity: Activity){
         if(!TextUtils.isEmpty(_binding!!.albumname.text) && !TextUtils.isEmpty(_binding!!.albumcover.text) && !TextUtils.isEmpty(_binding!!.albumdescription.text) && !TextUtils.isEmpty(_binding!!.albumReleaseDate.text)) {
