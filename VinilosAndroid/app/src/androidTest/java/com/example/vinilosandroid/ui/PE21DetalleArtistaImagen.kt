@@ -23,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE21DetalleArtistaNombre {
+class PE21DetalleArtistaImagen {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE21DetalleArtistaNombre() {
+    fun pE21DetalleArtistaDescripcion() {
         Thread.sleep(1000)
         val bottomNavigationItemView = Espresso.onView(
             Matchers.allOf(
@@ -57,15 +57,16 @@ class PE21DetalleArtistaNombre {
             )
         )
         textView2.perform(ViewActions.click())
-        val textView3 = Espresso.onView(
+        val imageView = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.textView11),
-                ViewMatchers.withText("Rubén Blades Bellido de Luna"),
+                ViewMatchers.withId(R.id.detail_image_iv),
+                ViewMatchers.withContentDescription("Rubén Blades Bellido de Luna"),
                 ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
                 ViewMatchers.isDisplayed()
             )
         )
-        textView3.check(ViewAssertions.matches(ViewMatchers.withText("Rubén Blades Bellido de Luna")))
+        imageView.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Thread.sleep(1000)
     }
 
     private fun childAtPosition(

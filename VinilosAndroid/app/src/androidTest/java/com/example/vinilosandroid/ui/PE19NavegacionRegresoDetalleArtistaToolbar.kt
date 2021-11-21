@@ -25,14 +25,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE29NavegacionRegresoToolbar {
+class PE19NavegacionRegresoDetalleArtistaToolbar {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE29NavegacionRegresoToolbar() {
+    fun pE19NavegacionRegresoToolbar() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(

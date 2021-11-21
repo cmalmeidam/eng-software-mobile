@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
@@ -49,17 +50,11 @@ class PE31ImagenDetalle {
         )
         bottomNavigationItemView.perform(click())
 
-        val recyclerView = onView(
-            allOf(
-                withId(R.id.albums_rv),
-                childAtPosition(
-                    withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                    1
-                )
-            )
-        )
-        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(1, click()))
+        onView(withText("Poeta del pueblo"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
 
+        Thread.sleep(1000)
         val imageView = onView(
             allOf(
                 withId(R.id.imageAlbum), withContentDescription("Poeta del pueblo"),

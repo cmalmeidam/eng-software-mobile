@@ -23,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE19DetalleArtistaImagen {
+class PE23DetalleArtistaDescripcion {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE19DetalleArtistaDescripcion() {
+    fun pE23DetalleArtistaDescripcion() {
         Thread.sleep(1000)
         val bottomNavigationItemView = Espresso.onView(
             Matchers.allOf(
@@ -57,16 +57,15 @@ class PE19DetalleArtistaImagen {
             )
         )
         textView2.perform(ViewActions.click())
-        val imageView = Espresso.onView(
+        val textView3 = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.detail_image_iv),
-                ViewMatchers.withContentDescription("Rubén Blades Bellido de Luna"),
+                ViewMatchers.withId(R.id.textView12),
                 ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
                 ViewMatchers.isDisplayed()
             )
         )
-        imageView.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(1000)
+        textView3.check(ViewAssertions.matches(ViewMatchers.withText(
+            "Es un cantante, compositor, músico, actor, abogado, político y activista panameño. Ha desarrollado gran parte de su carrera artística en la ciudad de Nueva York.")))
     }
 
     private fun childAtPosition(

@@ -12,6 +12,14 @@ import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.models.Collector
 import com.example.vinilosandroid.models.Musician
 import org.json.JSONArray
+import org.json.JSONObject
+
+import com.android.volley.toolbox.JsonObjectRequest
+
+import org.json.JSONException
+
+
+
 
 class NetworkServiceAdapter  constructor(context: Context) {
     companion object{
@@ -76,8 +84,64 @@ class NetworkServiceAdapter  constructor(context: Context) {
             }))
     }
 
+    fun postAlbum(
+        onComplete: (String) -> Unit,
+        onError: (error: VolleyError) -> Unit,
+        albumnName: String,
+        albumCover: String,
+        albumGenre: String,
+        albumDescription: String,
+        albumRecordLabel: String,
+        albumDate: String
+    ) {
+        requestQueue.add(postRequest("albums",
+            Response.Listener<String> { response ->
+                val resp = JSONArray(response)
+                onComplete("success")
+            },
+            Response.ErrorListener {
+                onError(it)
+            },
+            albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+        ))
+    }
+
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
+    }
+
+    private fun postRequest(
+        path: String,
+        responseListener: Response.Listener<String>,
+        errorListener: Response.ErrorListener,
+        albumnName: String,
+        albumCover: String,
+        albumGenre: String,
+        albumDescription: String,
+        albumRecordLabel: String,
+        albumDate: String
+    ): JsonObjectRequest {
+        val postUrl: String = BASE_URL + path
+
+        val postData = JSONObject()
+        try {
+            postData.put("name", albumnName)
+            postData.put("cover", albumCover)
+            postData.put("releaseDate", albumDate)
+            postData.put("description", albumDescription)
+            postData.put("genre", albumGenre)
+            postData.put("recordLabel", albumRecordLabel)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, postUrl, postData,
+            { response -> println(response) }
+        ) { error -> error.printStackTrace() }
+
+        return jsonObjectRequest
+
     }
 
 }

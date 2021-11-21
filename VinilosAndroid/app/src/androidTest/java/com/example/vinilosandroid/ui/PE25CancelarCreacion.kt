@@ -1,9 +1,11 @@
 package com.example.vinilosandroid.ui
 
+
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -12,6 +14,7 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -21,52 +24,73 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE1NombresAlbumesSinScroll {
+class PE25CancelarCreacion {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE12NombresAlbumesSinScroll() {
-        Thread.sleep(1000)
-        val bottomNavigationItemView = onView(
+    fun pE25CancelarCreacion() {
+        val appCompatImageButton = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.createAlbumButton),
                 childAtPosition(
                     childAtPosition(
-                        withId(R.id.bottomnav),
+                        withClassName(`is`("android.widget.ScrollView")),
                         0
                     ),
-                    0
+                    1
+                )
+            )
+        )
+        appCompatImageButton.perform(scrollTo(), click())
+
+        val textView = onView(
+            allOf(
+                withText("Crear Album"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
-        bottomNavigationItemView.perform(click())
+        textView.check(matches(withText("Crear Album")))
 
-        Thread.sleep(1000)
+        val appCompatImageButton2 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            0
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton2.perform(click())
 
         val textView2 = onView(
             allOf(
-                withId(R.id.textView5), withText("Buscando América"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
+                withText("Albumes"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Buscando América")))
-        Thread.sleep(1000)
-
-        val textView4 = onView(
-            allOf(
-                withId(R.id.textView5), withText("Poeta del pueblo"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView4.check(matches(withText("Poeta del pueblo")))
-        Thread.sleep(1000)
-
+        textView2.check(matches(withText("Albumes")))
     }
 
     private fun childAtPosition(

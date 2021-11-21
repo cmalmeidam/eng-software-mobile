@@ -22,6 +22,30 @@
         <entry key="..\:/MISO/CICLO_4/Ing_SW_Apps_Moviles/Proyecto/eng-software-mobile/VinilosAndroid/app/src/main/res/menu/menu.xml" value="0.1953125" />
         <entry key="..\:/MISO/CICLO_4/Ing_SW_Apps_Moviles/Proyecto/eng-software-mobile/VinilosAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22552083333333334" />
         <entry key="..\:/MISO/CICLO_4/Ing_SW_Apps_Moviles/Proyecto/eng-software-mobile/VinilosAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable-v24/border.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/bottom_tab_color.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_album.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.42552083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_artist.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_baseline_android_24.xml" value="0.34479166666666666" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_collector.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_face.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/drawable/ic_view_list.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/activity_main.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/album_create.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/album_detail_fragment.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/album_fragment.xml" value="0.5431928127159641" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/album_item.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/collector_fragment.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/collector_item.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/fragment_album_create.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/fragment_create_album.xml" value="0.67" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/fragment_musician_detail.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/musician_fragment.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/layout/musician_item.xml" value="0.55" />
+        <entry key="..\:/Users/danie/Documents/GitHub/eng-software-mobile/VinilosAndroid/app/src/main/res/menu/menu.xml" value="0.32864583333333336" />
         <entry key="..\:/masterProyectos/Ciclo4/DesarrolloMovil/VinilosAndroid/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/masterProyectos/Ciclo4/DesarrolloMovil/VinilosAndroid/app/src/main/res/layout/collector_item.xml" value="0.36666666666666664" />
         <entry key="..\:/masterProyectos/Ciclo4/DesarrolloMovil/VinilosAndroid/app/src/main/res/layout/fragment_collector.xml" value="0.1" />

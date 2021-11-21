@@ -14,4 +14,19 @@ class AlbumsRepository (val application: Application){
         )
     }
 
-}
+    fun postData(
+        callback: (String) -> Unit,
+        onError: (VolleyError) -> Unit,
+        albumnName: String,
+        albumCover: String,
+        albumGenre: String,
+        albumDescription: String,
+        albumRecordLabel: String,
+        albumDate: String
+    ){
+        NetworkServiceAdapter.getInstance(application).postAlbum({
+            callback("success")
+        },
+            onError,  albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+        )
+    }}

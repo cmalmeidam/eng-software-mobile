@@ -23,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE20DetalleArtistaNacimiento {
+class PE20DetalleArtistaNombre {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE20DetalleArtistaDescripcion() {
+    fun pE20DetalleArtistaNombre() {
         Thread.sleep(1000)
         val bottomNavigationItemView = Espresso.onView(
             Matchers.allOf(
@@ -59,12 +59,13 @@ class PE20DetalleArtistaNacimiento {
         textView2.perform(ViewActions.click())
         val textView3 = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.textView13),
+                ViewMatchers.withId(R.id.textView11),
+                ViewMatchers.withText("Rubén Blades Bellido de Luna"),
                 ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
                 ViewMatchers.isDisplayed()
             )
         )
-        textView3.check(ViewAssertions.matches(ViewMatchers.withText("16/07/1948")))
+        textView3.check(ViewAssertions.matches(ViewMatchers.withText("Rubén Blades Bellido de Luna")))
     }
 
     private fun childAtPosition(

@@ -17,4 +17,19 @@
     <string name="retorno">Retorno</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="albumname">Nombre</string>
+    <string name="albumcover">URL Portada</string>
+    <string name="albumdescription">Descripcion</string>
+    <string name="albumdateformat">dd/mm/yyyy</string>
+
+    <string name="albumgenre">Genero</string>
+    <string name="createAlbumMenuTitle">Crear Album</string>
+    <string name="createAlbumButton">Crear Album</string>
+    <string name="albumrecordlabel">Casa discográfica</string>
+    <string name="albumNameTitle">Nombre del Album</string>
+    <string name="albumDateTitle">Fecha de Lanzamiento</string>
+    <string name="albumDescriptionTitle">Descripcion del Album</string>
+    <string name="albumGenreSelectorTitle">Genero</string>
+    <string name="albumRecordLabelSelectorTitle">Disquera</string>
+    <string name="albumCoverURLTitle">URL Portada Album</string>
 </resources>
