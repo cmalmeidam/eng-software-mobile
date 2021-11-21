@@ -3,7 +3,6 @@ package com.example.vinilosandroid.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Collector
-import com.example.vinilosandroid.network.NetworkServiceAdapter
 import com.example.vinilosandroid.repositories.CollectorsRepository
 
 class CollectorViewModel(application: Application) :  AndroidViewModel(application)  {

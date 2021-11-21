@@ -10,7 +10,6 @@ import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.MusicianItemBinding
 import com.example.vinilosandroid.models.Musician
 import com.example.vinilosandroid.ui.MusicianFragmentDirections
-/*import com.example.vinilosandroid.ui.MusicianFragmentDirections*/
 import com.squareup.picasso.Picasso
 
 

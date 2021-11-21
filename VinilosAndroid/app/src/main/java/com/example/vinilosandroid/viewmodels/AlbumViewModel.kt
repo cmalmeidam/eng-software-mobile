@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.repositories.AlbumsRepository
-import com.example.vinilosandroid.ui.CreateAlbumFragment
 import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -33,7 +32,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
 
     init {
         refreshDataFromNetwork()
-//        postDataFromNetwork()
     }
 
     private fun refreshDataFromNetwork() {
@@ -60,21 +58,18 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     ) {
         val albumsRepository =AlbumsRepository(application)
         albumsRepository.postData({
-
-        },{
+        },{_eventNetworkError.value = true
         }, albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate)
     }
     fun processInformation(_binding : FragmentCreateAlbumBinding, activity: Activity){
         if(!TextUtils.isEmpty(_binding!!.albumname.text) && !TextUtils.isEmpty(_binding!!.albumcover.text) && !TextUtils.isEmpty(_binding!!.albumdescription.text) && !TextUtils.isEmpty(_binding!!.albumReleaseDate.text)) {
             try {
-                val isoDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-
                 val albumnName = _binding!!.albumname.text.toString()
                 val albumCover = _binding!!.albumcover.text.toString()
                 val albumGenre = _binding!!.genreSelector.selectedItem.toString()
                 val albumDescription = _binding!!.albumdescription.text.toString()
                 val albumRecordLabel = _binding!!.recordLabelSelector.selectedItem.toString()
-                var albumDate = isoDate.format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumReleaseDate.text.toString()))
+                var albumDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumReleaseDate.text.toString()))
                 postDataFromNetwork(activity.application, albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate)
                 val action = CreateAlbumFragmentDirections.actionCreateAlbumToAlbumDetailFragment(
                     0,
@@ -90,20 +85,12 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
                 println(e)
             }
         } else {
-            if(TextUtils.isEmpty(_binding!!.albumname.text)) {
-                Toast.makeText(activity,"El nombre no puede estar vacio", Toast.LENGTH_LONG).show()
-            }
+            when(TextUtils.isEmpty(_binding!!.albumname.text) || TextUtils.isEmpty(_binding!!.albumcover.text) || TextUtils.isEmpty(_binding!!.albumdescription.text) || TextUtils.isEmpty(_binding!!.albumReleaseDate.text)){
+                TextUtils.isEmpty(_binding!!.albumname.text) -> Toast.makeText(activity,"El nombre no puede estar vacio", Toast.LENGTH_LONG).show()
+                TextUtils.isEmpty(_binding!!.albumReleaseDate.text) -> Toast.makeText(activity,"La fecha no puede estar vacia", Toast.LENGTH_LONG).show()
+                TextUtils.isEmpty(_binding!!.albumcover.text) -> Toast.makeText(activity,"La url de la portada del album no puede estar vacia", Toast.LENGTH_LONG).show()
+                TextUtils.isEmpty(_binding!!.albumdescription.text) -> Toast.makeText(activity,"La descripcion no puede estar vacia", Toast.LENGTH_LONG).show()
 
-            if(TextUtils.isEmpty(_binding!!.albumcover.text)) {
-                Toast.makeText(activity,"La url de la portada del album no puede estar vacia", Toast.LENGTH_LONG).show()
-            }
-
-            if(TextUtils.isEmpty(_binding!!.albumdescription.text)) {
-                Toast.makeText(activity,"La descripcion no puede estar vacia", Toast.LENGTH_LONG).show()
-            }
-
-            if(TextUtils.isEmpty(_binding!!.albumReleaseDate.text)) {
-                Toast.makeText(activity,"La fecha no puede estar vacia", Toast.LENGTH_LONG).show()
             }
         }
     }

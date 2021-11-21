@@ -25,14 +25,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE18NavegacionDetalleArtista {
+class PE18NavegacionDetalleArtistas {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE18NavegacionDetalle() {
+    fun pE18NavegacionDetalleArtistas() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -48,15 +48,21 @@ class PE18NavegacionDetalleArtista {
             )
         )
         bottomNavigationItemView.perform(click())
-        Thread.sleep(1000)
+
         val textView = onView(
             allOf(
-                withId(R.id.textView8), withText("Artistas para tí"),
-                withParent(withParent(withId(R.id.nav_host_fragment))),
+                withText("Artistas"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Artistas para tí")))
+        textView.check(matches(withText("Artistas")))
+
 
         val recyclerView = onView(
             allOf(
@@ -69,14 +75,19 @@ class PE18NavegacionDetalleArtista {
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
         Thread.sleep(1000)
-        val textView2 = onView(
+        val textView3 = onView(
             allOf(
-                withId(R.id.textView11), withText("Rubén Blades Bellido de Luna"),
-                withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
+                withText("Artistas para tí"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Rubén Blades Bellido de Luna")))
+        textView3.check(matches(withText("Artistas para tí")))
     }
 
     private fun childAtPosition(

@@ -58,7 +58,7 @@ class MusicianViewModel(application: Application) :  AndroidViewModel(applicatio
     }
     fun formateandoDate(birthDate:String): String {
         val birthDate = birthDate
-        var finalDate: String? = null
+        var finalDate: String?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
             var odt = OffsetDateTime.parse(birthDate)

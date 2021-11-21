@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,7 +7,7 @@
             type="com.example.vinilosandroid.models.Musician"/>
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -48,7 +47,7 @@
                 android:text="@{musician.description}"
                 android:textAlignment="viewStart"
                 android:textColor="#000000"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="normal" />
 
             <LinearLayout
@@ -66,25 +65,26 @@
                     android:layout_weight="1"
                     android:padding="2dp"
                     android:text="@string/fecha_det_artista"
-                    android:textAlignment="viewStart"
-                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView13"
-                    android:layout_width="277dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
                     android:fontFamily="roboto"
                     android:minHeight="50dp"
                     android:padding="2dp"
                     android:text="@{musician.birthDate}"
-                    android:textAlignment="viewStart"
                     android:textColor="#000000"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="normal" />
 
             </LinearLayout>
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 
 </layout>

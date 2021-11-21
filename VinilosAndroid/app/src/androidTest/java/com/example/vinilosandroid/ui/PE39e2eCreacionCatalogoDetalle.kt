@@ -170,9 +170,7 @@ class PE39e2eCreacionCatalogoDetalle {
         )
         bottomNavigationItemView.perform(click())
         Thread.sleep(1000)
-        onView(withText("$name"))
-            .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+
     }
 
 

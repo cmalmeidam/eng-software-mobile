@@ -13,13 +13,8 @@ import com.example.vinilosandroid.models.Collector
 import com.example.vinilosandroid.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
-
 import com.android.volley.toolbox.JsonObjectRequest
-
 import org.json.JSONException
-
-
-
 
 class NetworkServiceAdapter  constructor(context: Context) {
     companion object{
@@ -39,47 +34,50 @@ class NetworkServiceAdapter  constructor(context: Context) {
 
     fun getCollectors(onComplete:(resp:List<Collector>)->Unit, onError: (error: VolleyError)->Unit) {
         requestQueue.add(getRequest("collectors",
-            Response.Listener<String> { response ->
+            { response ->
                 Log.d("tagb", response)
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
+                var item: JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
                 }
                 onComplete(list)
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             }))
     }
     fun getAlbums(onComplete:(resp:List<Album>)->Unit, onError: (error: VolleyError)->Unit) {
         requestQueue.add(getRequest("albums",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
+                var item : JSONObject?
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
                 }
                 onComplete(list)
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             }))
     }
     fun getMusicians(onComplete:(resp:List<Musician>)->Unit, onError: (error: VolleyError)->Unit) {
         requestQueue.add(getRequest("musicians",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Musician>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Musician(musicianId = item.getInt("id"),name = item.getString("name"), image = item.getString("image"), description = item.getString("description"), birthDate = item.getString("birthDate")))
                 }
                 onComplete(list)
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             }))
     }
@@ -87,22 +85,22 @@ class NetworkServiceAdapter  constructor(context: Context) {
     fun postAlbum(
         onComplete: (String) -> Unit,
         onError: (error: VolleyError) -> Unit,
-        albumnName: String,
+        albumName: String,
         albumCover: String,
         albumGenre: String,
         albumDescription: String,
         albumRecordLabel: String,
         albumDate: String
     ) {
-        requestQueue.add(postRequest("albums",
-            Response.Listener<String> { response ->
-                val resp = JSONArray(response)
+        requestQueue.add(postRequest(
+            { response ->
+                JSONArray(response)
                 onComplete("success")
             },
-            Response.ErrorListener {
+            {
                 onError(it)
             },
-            albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+            albumName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
         ))
     }
 
@@ -111,21 +109,19 @@ class NetworkServiceAdapter  constructor(context: Context) {
     }
 
     private fun postRequest(
-        path: String,
         responseListener: Response.Listener<String>,
         errorListener: Response.ErrorListener,
-        albumnName: String,
+        albumName: String,
         albumCover: String,
         albumGenre: String,
         albumDescription: String,
         albumRecordLabel: String,
         albumDate: String
     ): JsonObjectRequest {
-        val postUrl: String = BASE_URL + path
-
+        val postUrl: String = BASE_URL + "albums"
         val postData = JSONObject()
         try {
-            postData.put("name", albumnName)
+            postData.put("name", albumName)
             postData.put("cover", albumCover)
             postData.put("releaseDate", albumDate)
             postData.put("description", albumDescription)

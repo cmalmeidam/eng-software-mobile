@@ -1,28 +1,30 @@
 package com.example.vinilosandroid.ui
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumDetailFragmentBinding
 import com.example.vinilosandroid.models.Album
 import com.squareup.picasso.Picasso
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlbumDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class AlbumDetailFragment : Fragment() {
 
-    private lateinit var binding: AlbumDetailFragmentBinding
+    private var _binding: AlbumDetailFragmentBinding? = null
+    private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
@@ -30,8 +32,7 @@ class AlbumDetailFragment : Fragment() {
         }
         activity.actionBar?.title = getString(R.string.tialbumes)
         val args: AlbumDetailFragmentArgs by navArgs()
-
-       binding.album = Album(
+       _binding?.album = Album(
             args.albumId,
             args.name,
             args.cover,
@@ -46,16 +47,13 @@ class AlbumDetailFragment : Fragment() {
             .load(args.cover)
             .placeholder(R.drawable.ic_album2)
             .error(R.drawable.ic_album2)
-            .into(binding.imageAlbum)
+            .into(_binding?.imageAlbum)
 
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = AlbumDetailFragmentBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
