@@ -34,7 +34,7 @@ Opción B
 
 9. Instalar en le dispositivo movíl
 
-10. Validar el funcionamiento
+10. Validar el funcionamiento.
 
 # Ejecución de pruebas
 
