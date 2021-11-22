@@ -57,7 +57,7 @@ class PE31ImagenDetalle {
         Thread.sleep(1000)
         val imageView = onView(
             allOf(
-                withId(R.id.imageAlbum), withContentDescription("Poeta del pueblo"),
+                withId(R.id.item_cover_iv), withContentDescription("Poeta del pueblo"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )

@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumDetailFragmentBinding
 import com.example.vinilosandroid.models.Album
@@ -43,12 +46,13 @@ class AlbumDetailFragment : Fragment() {
             args.genre,
             args.recordLabel
         )
-        Picasso.get()
+        Glide.with(activity)
             .load(args.cover)
-            .placeholder(R.drawable.ic_album2)
-            .error(R.drawable.ic_album2)
-            .into(_binding?.imageAlbum)
-
+            .apply(
+                RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .placeholder(R.drawable.ic_album2)
+                    .error(R.drawable.ic_album2))
+            .into(_binding!!.itemCoverIv)
     }
 
     override fun onDestroyView() {
