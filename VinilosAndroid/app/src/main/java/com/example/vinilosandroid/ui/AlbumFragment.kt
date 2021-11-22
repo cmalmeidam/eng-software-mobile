@@ -17,7 +17,6 @@ import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
 
-
 class AlbumFragment : Fragment() {
     private var _binding: AlbumFragmentBinding? = null
     private val binding get() = _binding!!
