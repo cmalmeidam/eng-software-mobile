@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/collectorFragment">
+    app:startDestination="@id/albumFragment">
 
     <fragment
         android:id="@+id/collectorFragment"
@@ -14,13 +14,83 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/tialbumes"
+        android:label="@string/albumes"
         tools:layout="@layout/album_fragment" >
+        <action
+            android:id="@+id/action_albumFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumFragment_to_createAlbum"
+            app:destination="@id/createAlbum" />
     </fragment>
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
-        android:label="@string/tiartistas"
+        android:label="@string/artistas"
         tools:layout="@layout/musician_fragment" >
+        <action
+            android:id="@+id/action_musicianFragment_to_musicianDetailFragment"
+            app:destination="@id/musicianDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicianDetailFragment"
+        android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
+        android:label="@string/tiartistas"
+        tools:layout="@layout/fragment_musician_detail" >
+        <action
+            android:id="@+id/action_musicianDetailFragment_to_musicianFragment"
+            app:destination="@id/musicianFragment" />
+        <argument
+            android:name="musicianId"
+            app:argType="integer" />
+        <argument
+            android:name="birthDate"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.example.vinilosandroid.ui.AlbumDetailFragment"
+        android:label="Detalle Álbum"
+        tools:layout="@layout/album_detail_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+        <argument
+            android:name="cover"
+            app:argType="string" />
+        <argument
+            android:name="genre"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="recordLabel"
+            app:argType="string" />
+        <argument
+            android:name="releaseDate"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAlbum"
+        android:name="com.example.vinilosandroid.ui.CreateAlbumFragment"
+        android:label="@string/createAlbum"
+        tools:layout="@layout/fragment_create_album" >
+        <action
+            android:id="@+id/action_createAlbum_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment"
+            app:popUpTo="@id/albumFragment" />
     </fragment>
 </navigation>

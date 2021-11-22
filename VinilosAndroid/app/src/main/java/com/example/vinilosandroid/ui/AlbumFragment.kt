@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
@@ -36,6 +37,10 @@ class AlbumFragment : Fragment() {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
+        _binding!!.createAlbumButton.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
+            _binding!!.createAlbumButton.findNavController().navigate(action)
+        }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -64,3 +69,5 @@ class AlbumFragment : Fragment() {
         }
     }
 }
+
+

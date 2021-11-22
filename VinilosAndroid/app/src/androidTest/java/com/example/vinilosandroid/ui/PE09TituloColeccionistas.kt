@@ -1,5 +1,6 @@
 package com.example.vinilosandroid.ui
 
+
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
@@ -14,31 +15,30 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ArtistFragmentTest {
+class PE09TituloColeccionistas {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun artistFragmentTest() {
+    fun pE09TituloColeccionistas() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.musicianFragment), withContentDescription("Artistas"),
+                withId(R.id.collectorFragment), withContentDescription("Coleccionistas"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
                         0
                     ),
-                    1
+                    2
                 ),
                 isDisplayed()
             )
@@ -47,30 +47,12 @@ class ArtistFragmentTest {
         Thread.sleep(1000)
         val textView = onView(
             allOf(
-                withId(R.id.textView8), withText("Artistas para tí"),
+                withId(R.id.textView6), withText("Coleccionistas"),
                 withParent(withParent(withId(R.id.nav_host_fragment))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Artistas para tí")))
-        Thread.sleep(1000)
-        val imageView = onView(
-            allOf(
-                withId(R.id.item_image_iv), withContentDescription("Rubén Blades Bellido de Luna"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        imageView.check(matches(isDisplayed()))
-        Thread.sleep(1000)
-        val textView2 = onView(
-            allOf(
-                withId(R.id.textView10), withText("Rubén Blades Bellido de Luna"),
-                withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Rubén Blades Bellido de Luna")))
+        textView.check(matches(withText("Coleccionistas")))
     }
 
     private fun childAtPosition(

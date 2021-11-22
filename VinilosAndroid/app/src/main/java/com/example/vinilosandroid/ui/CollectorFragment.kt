@@ -22,10 +22,6 @@ class CollectorFragment : Fragment() {
     private lateinit var viewModel: CollectorViewModel
     private var viewModelAdapter: CollectorsAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
