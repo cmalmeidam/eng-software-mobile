@@ -35,3 +35,8 @@ Opción B
 9. Instalar en le dispositivo movíl
 
 10. Validar el funcionamiento
+
+# Ejecución de pruebas
+
+Para la ejecución de pruebas primero construir la aplicación por primera vez y después esta ejecución se pueden ejecutar las pruebas automatizadas.
+
