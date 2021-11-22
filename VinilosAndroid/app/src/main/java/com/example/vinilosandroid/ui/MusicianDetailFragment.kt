@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.FragmentMusicianDetailBinding
 import com.example.vinilosandroid.models.Musician
 import com.example.vinilosandroid.viewmodels.MusicianViewModel
-import com.squareup.picasso.Picasso
+
 
 class MusicianDetailFragment : Fragment() {
 
@@ -40,11 +43,13 @@ class MusicianDetailFragment : Fragment() {
         binding.musician = Musician(
             args.musicianId, args.name, args.image, args.description, finalDate
         )
-        Picasso.get()
+        Glide.with(activity)
             .load(args.image)
-            .placeholder(R.drawable.ic_artist)
-            .error(R.drawable.ic_face)
-            .into(binding.detailImageIv)
+            .apply(
+                RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .placeholder(R.drawable.ic_artist)
+                    .error(R.drawable.ic_face))
+            .into(binding.itemImageIv)
     }
 
 }

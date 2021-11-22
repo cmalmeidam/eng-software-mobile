@@ -1,35 +1,18 @@
 <resources>
     <string name="app_name">Vinilos</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="coleccionistas">Coleccionistas</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_switch">Cambiar</string>
     <string name="albumes">Albumes</string>
     <string name="tialbumes">Albumes para tí</string>
     <string name="artistas">Artistas</string>
-    <string name="desc_det_artista">Descripción</string>
     <string name="fecha_det_artista">Fecha nacimiento</string>
     <string name="tiartistas">Artistas para tí</string>
-    <string name="usuarios">Usuario</string>
     <string name="casa_disco_title">Casa discográfica</string>
     <string name="fecha_lanz_title">Fecha de Lanzamiento</string>
     <string name="genero_title">Género</string>
-    <string name="retorno">Retorno</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="albumname">Nombre</string>
-    <string name="albumcover">URL Portada</string>
-    <string name="albumdescription">Descripcion</string>
     <string name="albumdateformat">dd/mm/yyyy</string>
-
-    <string name="albumgenre">Genero</string>
-    <string name="createAlbumMenuTitle">Crear Album</string>
-    <string name="createAlbumButton">Crear Album</string>
-    <string name="albumrecordlabel">Casa discográfica</string>
+    <string name="createAlbum">Crear Album</string>
     <string name="albumNameTitle">Nombre del Album</string>
-    <string name="albumDateTitle">Fecha de Lanzamiento</string>
-    <string name="albumDescriptionTitle">Descripcion del Album</string>
-    <string name="albumGenreSelectorTitle">Genero</string>
+    <string name="albumDescriptionTitle">Descripción del Album</string>
     <string name="albumRecordLabelSelectorTitle">Disquera</string>
     <string name="albumCoverURLTitle">URL Portada Album</string>
 </resources>

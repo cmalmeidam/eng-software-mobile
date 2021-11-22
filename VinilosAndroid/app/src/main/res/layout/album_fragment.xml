@@ -35,7 +35,9 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.437" />
+            app:layout_constraintVertical_bias="0.437"
+            android:contentDescription="@string/createAlbum"
+            android:backgroundTint="@color/blue" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/albums_rv"

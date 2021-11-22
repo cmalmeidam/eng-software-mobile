@@ -16,7 +16,6 @@ import com.example.vinilosandroid.databinding.AlbumFragmentBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
-import com.example.vinilosandroid.ui.AlbumFragmentDirections
 
 
 class AlbumFragment : Fragment() {
