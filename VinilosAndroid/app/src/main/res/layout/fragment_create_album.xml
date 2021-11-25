@@ -9,12 +9,6 @@
 
 
     <EditText
-        android:id="@+id/textInputLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
         android:id="@+id/albumname"
         android:layout_width="193dp"
         android:layout_height="48dp"
@@ -51,6 +45,7 @@
         android:layout_height="48dp"
         android:ems="10"
         android:hint="@string/albumdateformat"
+        android:contentDescription="@string/fechaedicion"
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

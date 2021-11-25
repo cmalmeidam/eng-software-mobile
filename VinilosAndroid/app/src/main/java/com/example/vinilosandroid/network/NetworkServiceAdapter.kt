@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilosandroid.models.Album
@@ -13,6 +14,7 @@ import com.example.vinilosandroid.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.vinilosandroid.models.Track
 import org.json.JSONException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -86,6 +88,33 @@ class NetworkServiceAdapter  constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    suspend fun getTracks(albumId:Int) = suspendCoroutine<List<Track>>{ cont->
+        requestQueue.add(getRequest("albums/$albumId/tracks",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Track>()
+                var item:JSONObject? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    val track = Track(trackId = item.getInt("id"), name = item.getString("name"), duration = item.getString("duration"))
+                    list.add(i,track)
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+    /*fun postTrack(body: JSONObject, albumId: Int,  onComplete:(resp:JSONObject)->Unit , onError: (error: VolleyError)->Unit){
+        requestQueue.add(postRequest("albums/$albumId/tracks",
+            body,
+            Response.Listener<JSONObject> { response ->
+                onComplete(response)
+            },
+            Response.ErrorListener {
+                onError(it)
+            }))
+    }*/
 
     suspend fun postAlbum(
         albumName: String,
