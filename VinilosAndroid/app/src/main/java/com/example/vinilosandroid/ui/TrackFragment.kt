@@ -72,7 +72,7 @@ class TrackFragment : Fragment() {
             if (isNetworkError) onNetworkError()
         })
         binding.btnasociar.setOnClickListener {
-            viewModel.processInformation(binding, activity)
+            viewModel.processInformation(args.albumId, args.name, binding, activity)
         }
     }
     override fun onDestroyView() {

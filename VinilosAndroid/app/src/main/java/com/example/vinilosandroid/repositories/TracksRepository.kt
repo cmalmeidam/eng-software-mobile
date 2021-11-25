@@ -14,24 +14,26 @@ import org.json.JSONArray
 
 class TracksRepository (val application: Application){
     private val format = Json
-
     suspend fun refreshData(albumId: Int): List<Track>{
-        var tracks = getTracks(albumId)
-        return if(tracks.isNullOrEmpty()){
-            val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
+        val cm =
+            application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE) {
+            var tracks = getTracks(albumId)
+            return if (tracks.isNullOrEmpty()) {
                 emptyList()
             } else {
-                tracks = NetworkServiceAdapter.getInstance(application).getTracks(albumId)
-                addTracks(albumId, tracks)
                 tracks
             }
-        } else tracks
+        }
+        else{
+            var tracks = NetworkServiceAdapter.getInstance(application).getTracks(albumId)
+            addTracks(albumId, tracks)
+            return tracks
+        }
     }
 
-
     suspend fun getTracks(albumId:Int): List<Track>{
-        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
+        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.TRACKS_SPREFS)
         if(prefs.contains(albumId.toString())){
             val storedVal = prefs.getString(albumId.toString(), "")
             if(!storedVal.isNullOrBlank()){
@@ -43,7 +45,7 @@ class TracksRepository (val application: Application){
         return listOf<Track>()
     }
     suspend fun addTracks(albumId:Int, tracks: List<Track>){
-        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
+        val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.TRACKS_SPREFS)
         if(!prefs.contains(albumId.toString())){
             var store = format.encodeToString(tracks)
             with(prefs.edit(),{
@@ -53,18 +55,11 @@ class TracksRepository (val application: Application){
         }
     }
 
-
-
-    /*suspend fun postData(
-        albumnName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
+    suspend fun postData(
+        albumId: Int,
+        track:Track
     ){
-        NetworkServiceAdapter.getInstance(application).postAlbum(albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
-        )
-    }*/
+        NetworkServiceAdapter.getInstance(application).postTrack(albumId, track)
+    }
     }
 

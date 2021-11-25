@@ -12,6 +12,7 @@ import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.repositories.TracksRepository
 import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
 import com.example.vinilosandroid.ui.TrackFragment
+import com.example.vinilosandroid.ui.TrackFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -61,7 +62,7 @@ class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
-    fun processInformation(_binding: TrackFragmentBinding, activity: Activity) {
+    fun processInformation(albumId:Int, albumName:String, _binding: TrackFragmentBinding, activity: Activity) {
         when (true){
             TextUtils.isEmpty(_binding!!.txtTrackName.text) -> Toast.makeText(activity,"El nombre no puede estar vacio", Toast.LENGTH_LONG).show()
             TextUtils.isEmpty(_binding!!.txtSegundos.text) && TextUtils.isEmpty(_binding!!.txtMinutos.text) -> Toast.makeText(activity,"El track debe durar más de 0 segundos",Toast.LENGTH_LONG).show()
@@ -71,14 +72,19 @@ class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel
             (_binding!!.txtSegundos.text.toString().toInt()) > 59 -> Toast.makeText(activity, "Los segundos no pueden exceder de 59", Toast.LENGTH_LONG).show()
             !TextUtils.isEmpty(_binding!!.txtTrackName.text) && !TextUtils.isEmpty(_binding!!.txtMinutos.text) && !TextUtils.isEmpty(_binding!!.txtSegundos.text) ->
                 try {
+                    var num = _binding!!.txtSegundos.text.toString()
+                    if((_binding!!.txtSegundos.text.toString().toInt()) <10){
+                        num = "0"+_binding!!.txtSegundos.text.toString()
+                    }
                     val track = Track(
                         0,
                         _binding.txtTrackName.text.toString(),
-                        (_binding!!.txtMinutos.text.toString() + ":" + _binding!!.txtSegundos.text.toString())
+                        (_binding!!.txtMinutos.text.toString() + ":" + num)
                     )
-                    println("entra al track")
-                    println(track.name)
-                    /*postDataFromNetwork(activity.application, track)*/
+                    postDataFromNetwork(activity.application, albumId, track)
+                    val action = TrackFragmentDirections.actionTrackFragmentSelf(
+                        albumId,albumName)
+                    _binding!!.btnasociar.findNavController().navigate(action)
                 } catch (e: Exception) {
                     Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
                     println(e)
@@ -86,33 +92,24 @@ class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel
         }
     }
 
-    /*fun postDataFromNetwork(
+    fun postDataFromNetwork(
         application: Application,
-        albumnName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
+        albumId:Int,
+        track: Track
     ) {
         try {
-            val albumsRepository = AlbumsRepository(application)
+            val tracksRepository = TracksRepository(application)
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    albumsRepository.postData(
-                        albumnName,
-                        albumCover,
-                        albumGenre,
-                        albumDescription,
-                        albumRecordLabel,
-                        albumDate
+                    tracksRepository.postData(
+                        albumId, track
                     )
                 }
             }
         } catch (e: Exception) {
             _eventNetworkError.value = true
         }
-    }*/
+    }
 
     class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

@@ -110,6 +110,10 @@
             app:argType="string" />
         <action
             android:id="@+id/action_trackFragment_to_albumDetailFragment"
-            app:destination="@id/albumDetailFragment" />
+            app:destination="@id/albumDetailFragment"
+            app:popUpTo="@id/musicianDetailFragment" />
+        <action
+            android:id="@+id/action_trackFragment_self"
+            app:destination="@id/trackFragment" />
     </fragment>
 </navigation>
