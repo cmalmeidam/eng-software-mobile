@@ -37,10 +37,6 @@ class AlbumFragment : Fragment() {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
-        _binding!!.createAlbumButton.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
-            _binding!!.createAlbumButton.findNavController().navigate(action)
-        }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -57,6 +53,10 @@ class AlbumFragment : Fragment() {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+        _binding!!.createAlbumButton.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
+            _binding!!.createAlbumButton.findNavController().navigate(action)
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()
