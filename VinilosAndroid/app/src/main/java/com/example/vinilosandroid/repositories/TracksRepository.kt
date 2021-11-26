@@ -46,13 +46,11 @@ class TracksRepository (val application: Application){
     }
     suspend fun addTracks(albumId:Int, tracks: List<Track>){
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.TRACKS_SPREFS)
-        if(!prefs.contains(albumId.toString())){
-            var store = format.encodeToString(tracks)
-            with(prefs.edit(),{
-                putString(albumId.toString(), store)
-                apply()
-            })
-        }
+        var store = format.encodeToString(tracks)
+        with(prefs.edit(),{
+            putString(albumId.toString(), store)
+            apply()
+        })
     }
 
     suspend fun postData(

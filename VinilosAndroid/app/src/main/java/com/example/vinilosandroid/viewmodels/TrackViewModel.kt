@@ -109,6 +109,7 @@ class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel
         } catch (e: Exception) {
             _eventNetworkError.value = true
         }
+        refreshDataFromNetwork()
     }
 
     class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {

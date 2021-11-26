@@ -30,8 +30,6 @@ class TracksAdapter : RecyclerView.Adapter<TracksAdapter.TrackViewHolder>() {
         holder.viewDataBinding.also {
             it.track = tracks[position]
         }
-        holder.viewDataBinding.root.setOnClickListener {
-        }
     }
 
     override fun getItemCount(): Int {

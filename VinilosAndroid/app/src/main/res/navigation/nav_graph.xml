@@ -114,6 +114,7 @@
             app:popUpTo="@id/musicianDetailFragment" />
         <action
             android:id="@+id/action_trackFragment_self"
-            app:destination="@id/trackFragment" />
+            app:destination="@id/trackFragment"
+            app:popUpTo="@id/albumDetailFragment" />
     </fragment>
 </navigation>

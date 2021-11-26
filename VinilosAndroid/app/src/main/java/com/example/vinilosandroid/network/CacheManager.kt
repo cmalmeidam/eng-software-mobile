@@ -27,14 +27,4 @@ class CacheManager(context: Context) {
             )
         }
     }
-    private var tracks: ArrayMap<Int, List<Track>> = arrayMapOf()
-
-    fun addTracks(albumId: Int, comment: List<Track>){
-        if (tracks.containsKey(albumId)){
-            tracks[albumId] = comment
-        }
-    }
-    fun getTracks(albumId: Int) : List<Track>{
-        return if (tracks.containsKey(albumId)) tracks[albumId]!! else listOf<Track>()
-    }
 }

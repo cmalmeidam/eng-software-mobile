@@ -116,7 +116,8 @@ class NetworkServiceAdapter  constructor(context: Context) {
         }
         requestQueue.add(
             postRequest("albums/$albumId/tracks", postData,
-                {
+                {response ->
+                    JSONArray(response)
                 cont.resume("success")
             },            {
                 cont.resumeWithException(it)
@@ -180,6 +181,10 @@ class NetworkServiceAdapter  constructor(context: Context) {
 
     }
     private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
-        return  JsonObjectRequest(Request.Method.POST, BASE_URL+path, body, responseListener, errorListener)
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, BASE_URL+path, body,
+            { response -> println(response) }
+        ) { error -> error.printStackTrace() }
+        return  jsonObjectRequest
     }
 }
