@@ -3,12 +3,13 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -16,24 +17,24 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.concurrent.thread
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE33FechaLanzamiento {
+class PE49AvisoNoHayTracks {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE33FechaLanzamiento() {
+    fun pE49AvisoNoHayTracks() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -49,20 +50,27 @@ class PE33FechaLanzamiento {
             )
         )
         bottomNavigationItemView.perform(click())
-
-
         Thread.sleep(1000)
-        onView(withText("A Day at the Races"))
-            .perform(ViewActions.scrollTo())
+        onView(withText("Poeta del pueblo"))
+            .perform(scrollTo())
             .perform(click())
 
+        Thread.sleep(1000)
+        val textView = onView(
+            allOf(
+                withId(R.id.textName), withText("Poeta del pueblo"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("Poeta del pueblo")))
+        onView(withText("Tracks"))
+            .perform(scrollTo())
+            .perform(click())
 
-        onView(withText("Fecha de Lanzamiento"))
-            .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
-        onView(withText("10-12-1976"))
-            .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+        Thread.sleep(1000)
+        onView(withText("No hay tracks asociados a este álbum")).perform(scrollTo()).check(ViewAssertions.matches(isDisplayed()))
+
     }
 
     private fun childAtPosition(

@@ -1,14 +1,9 @@
 package com.example.vinilosandroid.ui
 
 
-import android.icu.util.RangeValueIterator
+
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
-import android.widget.ListView
-import android.widget.ScrollView
-import androidx.core.widget.NestedScrollView
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click

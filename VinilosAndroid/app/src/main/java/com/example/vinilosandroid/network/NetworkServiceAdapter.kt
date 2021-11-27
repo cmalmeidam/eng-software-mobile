@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.vinilosandroid.models.Album
@@ -13,6 +14,7 @@ import com.example.vinilosandroid.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.vinilosandroid.models.Track
 import org.json.JSONException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -86,6 +88,42 @@ class NetworkServiceAdapter  constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    suspend fun getTracks(albumId:Int) = suspendCoroutine<List<Track>>{ cont->
+        requestQueue.add(getRequest("albums/$albumId/tracks",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Track>()
+                var item:JSONObject? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    val track = Track(trackId = item.getInt("id"), name = item.getString("name"), duration = item.getString("duration"))
+                    list.add(i,track)
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    suspend fun postTrack(albumId:Int, track:Track) = suspendCoroutine<String> { cont ->
+        var postData = JSONObject()
+        try {
+            postData.put("name", track.name)
+            postData.put("duration", track.duration)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requestQueue.add(
+            postRequest("albums/$albumId/tracks", postData,
+                {response ->
+                    JSONArray(response)
+                cont.resume("success")
+            },            {
+                cont.resumeWithException(it)
+            }
+            ))
+    }
 
     suspend fun postAlbum(
         albumName: String,
@@ -95,7 +133,7 @@ class NetworkServiceAdapter  constructor(context: Context) {
         albumRecordLabel: String,
         albumDate: String
     ) = suspendCoroutine<String>{ cont->
-        requestQueue.add(postRequest(
+        requestQueue.add(postRequestAlbum(
             { response ->
                 JSONArray(response)
                 cont.resume("success")
@@ -111,7 +149,7 @@ class NetworkServiceAdapter  constructor(context: Context) {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }
 
-    private fun postRequest(
+    private fun postRequestAlbum(
         responseListener: Response.Listener<String>,
         errorListener: Response.ErrorListener,
         albumName: String,
@@ -142,5 +180,11 @@ class NetworkServiceAdapter  constructor(context: Context) {
         return jsonObjectRequest
 
     }
-
+    private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, BASE_URL+path, body,
+            { response -> println(response) }
+        ) { error -> error.printStackTrace() }
+        return  jsonObjectRequest
+    }
 }

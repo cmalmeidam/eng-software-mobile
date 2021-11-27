@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -16,6 +17,7 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,67 +45,46 @@ class PE26CreacionAlbumDescripcionVacia {
             )
         )
         botonCrearAlbum.perform(scrollTo(), click())
-
-        Thread.sleep(50)
-
-
         val inputNombreAlbum = onView(
             allOf(
                 withId(R.id.albumname),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    1
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
         inputNombreAlbum.perform(replaceText("Angles"), closeSoftKeyboard())
 
-        Thread.sleep(50)
-
         val inputFechaDeLanzamiento = onView(
             allOf(
                 withId(R.id.albumReleaseDate),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    4
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
         inputFechaDeLanzamiento.perform(replaceText("15/10/2010"), closeSoftKeyboard())
 
-        Thread.sleep(50)
-
         val inputURLCoverAlbum = onView(
             allOf(
                 withId(R.id.albumcover),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    2
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
-
         inputURLCoverAlbum.perform(
             replaceText("https://m.media-amazon.com/images/I/81-wt1kTStL._SL1500_.jpg"),
         )
@@ -113,19 +94,14 @@ class PE26CreacionAlbumDescripcionVacia {
         val materialButton = onView(
             allOf(
                 withId(R.id.crearAlbumBtn), withText("Crear Album"),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    5
-                ),
-                isDisplayed()
-            )
-        )
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
+                ))).perform(scrollTo())
+            .check(ViewAssertions.matches(isDisplayed()))
+
         materialButton.perform(click())
 
 
@@ -135,7 +111,7 @@ class PE26CreacionAlbumDescripcionVacia {
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        withParent(withId(R.id.nav_host_fragment))
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
                     )
                 ),
                 isDisplayed()
@@ -143,6 +119,7 @@ class PE26CreacionAlbumDescripcionVacia {
         )
         button.check(matches(isDisplayed()))
     }
+
 
     private fun childAtPosition(
         parentMatcher: Matcher<View>, position: Int
