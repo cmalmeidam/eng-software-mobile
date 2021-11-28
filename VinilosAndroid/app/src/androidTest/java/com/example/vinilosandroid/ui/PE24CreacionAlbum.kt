@@ -4,7 +4,6 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -48,16 +47,12 @@ class PE24CreacionAlbum {
         val inputNombreAlbum = onView(
             allOf(
                 withId(R.id.albumname),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
                         )
                     ),
-                    1
-                ),
                 isDisplayed()
             )
         )
@@ -66,15 +61,11 @@ class PE24CreacionAlbum {
         val inputFechaDeLanzamiento = onView(
             allOf(
                 withId(R.id.albumReleaseDate),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    4
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
@@ -84,20 +75,15 @@ class PE24CreacionAlbum {
         val inputURLCoverAlbum = onView(
             allOf(
                 withId(R.id.albumcover),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    2
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
-
         inputURLCoverAlbum.perform(
             replaceText("https://m.media-amazon.com/images/I/81-wt1kTStL._SL1500_.jpg"),
         )
@@ -107,15 +93,11 @@ class PE24CreacionAlbum {
         val inputAlbumDescription = onView(
             allOf(
                 withId(R.id.albumdescription),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    3
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
@@ -126,19 +108,14 @@ class PE24CreacionAlbum {
         val materialButton = onView(
             allOf(
                 withId(R.id.crearAlbumBtn), withText("Crear Album"),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    5
-                ),
-                isDisplayed()
-            )
-        )
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
+                ))).perform(scrollTo())
+            .check(matches(isDisplayed()))
+
         materialButton.perform(click())
 
         val textView = onView(

@@ -1,17 +1,16 @@
 package com.example.vinilosandroid.ui
 
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.CollectorFragmentBinding
-import com.example.vinilosandroid.models.Collector
 import com.example.vinilosandroid.ui.adapters.CollectorsAdapter
 import com.example.vinilosandroid.viewmodels.CollectorViewModel
 
@@ -45,12 +44,12 @@ class CollectorFragment : Fragment() {
         }
         activity.actionBar?.title = getString(R.string.coleccionistas)
         viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application)).get(CollectorViewModel::class.java)
-        viewModel.collectors.observe(viewLifecycleOwner, Observer<List<Collector>> {
+        viewModel.collectors.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.collectors = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

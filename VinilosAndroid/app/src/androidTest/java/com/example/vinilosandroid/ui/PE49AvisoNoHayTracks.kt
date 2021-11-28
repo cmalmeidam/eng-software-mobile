@@ -4,8 +4,8 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -24,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE37NavegacionBackArrowDetalle {
+class PE49AvisoNoHayTracks {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE37NavegacionBackArrowDetalle() {
+    fun pE49AvisoNoHayTracks() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -48,56 +47,26 @@ class PE37NavegacionBackArrowDetalle {
         )
         bottomNavigationItemView.perform(click())
         Thread.sleep(1000)
-        onView(withText("Buscando América"))
-            .perform(ViewActions.scrollTo())
+        onView(withText("Poeta del pueblo"))
+            .perform(scrollTo())
             .perform(click())
-        Thread.sleep(1000)
 
+        Thread.sleep(1000)
         val textView = onView(
             allOf(
-                withText("Detalle Álbum"),
-                withParent(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
-                    )
-                ),
+                withId(R.id.textName), withText("Poeta del pueblo"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Detalle Álbum")))
+        textView.check(matches(withText("Poeta del pueblo")))
+        onView(withText("Tracks"))
+            .perform(scrollTo())
+            .perform(click())
 
-        val appCompatImageButton = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton.perform(click())
         Thread.sleep(1000)
-        val textView2 = onView(
-            allOf(
-                withText("Albumes"),
-                withParent(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
-                    )
-                ),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Albumes")))
+        onView(withText("No hay tracks asociados a este álbum")).perform(scrollTo()).check(matches(isDisplayed()))
+
     }
 
     private fun childAtPosition(

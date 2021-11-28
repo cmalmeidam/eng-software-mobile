@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -24,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE37NavegacionBackArrowDetalle {
+class PE50NavegacionaAsociar {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE37NavegacionBackArrowDetalle() {
+    fun pE50NavegacionaAsociar() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -47,45 +46,8 @@ class PE37NavegacionBackArrowDetalle {
             )
         )
         bottomNavigationItemView.perform(click())
-        Thread.sleep(1000)
-        onView(withText("Buscando América"))
-            .perform(ViewActions.scrollTo())
-            .perform(click())
-        Thread.sleep(1000)
 
         val textView = onView(
-            allOf(
-                withText("Detalle Álbum"),
-                withParent(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
-                    )
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Detalle Álbum")))
-
-        val appCompatImageButton = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton.perform(click())
-        Thread.sleep(1000)
-        val textView2 = onView(
             allOf(
                 withText("Albumes"),
                 withParent(
@@ -97,8 +59,46 @@ class PE37NavegacionBackArrowDetalle {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        textView.check(matches(withText("Albumes")))
+
+        onView(withText("Buscando América"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
+        Thread.sleep(1000)
+        val textView2 = onView(
+            allOf(
+                withText("Detalle Álbum"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView2.check(matches(withText("Detalle Álbum")))
+        onView(withText("Tracks"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
+
+        Thread.sleep(1000)
+        val textView3 = onView(
+            allOf(
+                withText("Asociar tracks"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+
+
     }
+
 
     private fun childAtPosition(
         parentMatcher: Matcher<View>, position: Int

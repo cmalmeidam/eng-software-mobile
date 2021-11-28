@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumFragmentBinding
-import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.ui.adapters.AlbumsAdapter
 import com.example.vinilosandroid.viewmodels.AlbumViewModel
 
@@ -37,10 +35,6 @@ class AlbumFragment : Fragment() {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
-        _binding!!.createAlbumButton.setOnClickListener {
-            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
-            _binding!!.createAlbumButton.findNavController().navigate(action)
-        }
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -49,14 +43,18 @@ class AlbumFragment : Fragment() {
         }
         activity.actionBar?.title = getString(R.string.albumes)
         viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
-        viewModel.albums.observe(viewLifecycleOwner, Observer<List<Album>> {
+        viewModel.albums.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.albums = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+        _binding!!.createAlbumButton.setOnClickListener {
+            val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
+            _binding!!.createAlbumButton.findNavController().navigate(action)
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

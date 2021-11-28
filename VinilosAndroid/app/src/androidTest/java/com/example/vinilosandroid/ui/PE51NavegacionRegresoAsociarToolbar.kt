@@ -24,14 +24,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE37NavegacionBackArrowDetalle {
+class PE51NavegacionRegresoAsociarToolbar {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE37NavegacionBackArrowDetalle() {
+    fun pE51NavegacionRegresoAsociarToolbar() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -47,13 +47,26 @@ class PE37NavegacionBackArrowDetalle {
             )
         )
         bottomNavigationItemView.perform(click())
-        Thread.sleep(1000)
+
+        val textView = onView(
+            allOf(
+                withText("Albumes"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("Albumes")))
+
         onView(withText("Buscando América"))
             .perform(ViewActions.scrollTo())
             .perform(click())
         Thread.sleep(1000)
-
-        val textView = onView(
+        val textView2 = onView(
             allOf(
                 withText("Detalle Álbum"),
                 withParent(
@@ -65,8 +78,25 @@ class PE37NavegacionBackArrowDetalle {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Detalle Álbum")))
+        textView2.check(matches(withText("Detalle Álbum")))
+        onView(withText("Tracks"))
+            .perform(ViewActions.scrollTo())
+            .perform(click())
 
+        Thread.sleep(1000)
+        val textView3 = onView(
+            allOf(
+                withText("Asociar tracks"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        Thread.sleep(1000)
         val appCompatImageButton = onView(
             allOf(
                 withContentDescription("Navigate up"),
@@ -85,19 +115,51 @@ class PE37NavegacionBackArrowDetalle {
         )
         appCompatImageButton.perform(click())
         Thread.sleep(1000)
-        val textView2 = onView(
+        val textView5 = onView(
             allOf(
-                withText("Albumes"),
+                withText("Detalle Álbum"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+                        withParent(IsInstanceOf.instanceOf(android.view.ViewGroup::class.java))
                     )
                 ),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        textView5.check(matches(withText("Detalle Álbum")))
+        Thread.sleep(1000)
+        val appCompatImageButton2 = onView(
+            allOf(
+                withContentDescription("Navigate up"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            0
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton2.perform(click())
+        Thread.sleep(1000)
+        val textView6 = onView(
+            allOf(
+                withText("Albumes"),
+                withParent(
+                    allOf(
+                        withId(R.id.my_toolbar),
+                        withParent(IsInstanceOf.instanceOf(android.view.ViewGroup::class.java))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView6.check(matches(withText("Albumes")))
     }
 
     private fun childAtPosition(

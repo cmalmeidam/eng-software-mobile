@@ -18,4 +18,13 @@
     <string name="albumDescriptionTitle">Descripción del Album</string>
     <string name="albumRecordLabelSelectorTitle">Disquera</string>
     <string name="albumCoverURLTitle">URL Portada Album</string>
+    <string name="asociar">Asociar</string>
+    <string name="asociar_tracks">Asociar tracks</string>
+    <string name="txt_no_tracks">No hay tracks asociados a este álbum</string>
+    <string name="tracks">Tracks</string>
+    <string name="duracion">Duración del álbum</string>
+    <string name="nombrecancion">Nombre de la canción</string>
+    <string name="signoigual">:</string>
+    <string name="segundos">Segundos</string>
+    <string name="minutos">Minutos</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -12,6 +13,7 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 
@@ -36,42 +38,28 @@ class PE29CreacionUrlvacia {
             )
         )
         botonCrearAlbum.perform(ViewActions.scrollTo(), ViewActions.click())
-
-        Thread.sleep(50)
         val inputNombreAlbum = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.albumname),
-                childAtPosition(
+                ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
-                        childAtPosition(
-                            ViewMatchers.withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    1
+                        ViewMatchers.withParent(IsInstanceOf.instanceOf(ScrollView::class.java))
+                    )
                 ),
                 ViewMatchers.isDisplayed()
             )
         )
-        inputNombreAlbum.perform(
-            ViewActions.replaceText("Angles"),
-            ViewActions.closeSoftKeyboard()
-        )
-
+        inputNombreAlbum.perform(ViewActions.replaceText("Angles"), ViewActions.closeSoftKeyboard())
 
         val inputFechaDeLanzamiento = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.albumReleaseDate),
-                childAtPosition(
+                ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
-                        childAtPosition(
-                            ViewMatchers.withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    4
+                        ViewMatchers.withParent(IsInstanceOf.instanceOf(ScrollView::class.java))
+                    )
                 ),
                 ViewMatchers.isDisplayed()
             )
@@ -86,15 +74,11 @@ class PE29CreacionUrlvacia {
         val inputAlbumDescription = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.albumdescription),
-                childAtPosition(
+                ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
-                        childAtPosition(
-                            ViewMatchers.withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    3
+                        ViewMatchers.withParent(IsInstanceOf.instanceOf(ScrollView::class.java))
+                    )
                 ),
                 ViewMatchers.isDisplayed()
             )
@@ -104,26 +88,21 @@ class PE29CreacionUrlvacia {
             ViewActions.closeSoftKeyboard()
         )
 
-        Thread.sleep(50)
 
         val materialButton = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("Crear Album"),
-                childAtPosition(
+                ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
-                        childAtPosition(
-                            ViewMatchers.withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    5
-                ),
-                ViewMatchers.isDisplayed()
+                        ViewMatchers.withParent(IsInstanceOf.instanceOf(ScrollView::class.java))
+                    )
+                )
             )
-        )
-        materialButton.perform(ViewActions.click())
+        ).perform(ViewActions.scrollTo())
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
+        materialButton.perform(ViewActions.click())
 
         val button = Espresso.onView(
             Matchers.allOf(
@@ -131,7 +110,7 @@ class PE29CreacionUrlvacia {
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
-                        ViewMatchers.withParent(ViewMatchers.withId(R.id.nav_host_fragment))
+                        ViewMatchers.withParent(IsInstanceOf.instanceOf(ScrollView::class.java))
                     )
                 ),
                 ViewMatchers.isDisplayed()

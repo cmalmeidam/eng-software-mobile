@@ -11,7 +11,6 @@ import com.example.vinilosandroid.databinding.CollectorItemBinding
 import com.example.vinilosandroid.models.Collector
 import com.example.vinilosandroid.ui.CollectorFragmentDirections
 
-/*import com.example.vinilosandroid.ui.CollectorFragmentDirections*/
 
 class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 

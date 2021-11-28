@@ -4,9 +4,8 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -24,14 +23,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class PE37NavegacionBackArrowDetalle {
+class PE45CrearAlbumNoDuracion {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun pE37NavegacionBackArrowDetalle() {
+    fun pE45CrearAlbumNoDuracion() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
@@ -49,55 +48,48 @@ class PE37NavegacionBackArrowDetalle {
         bottomNavigationItemView.perform(click())
         Thread.sleep(1000)
         onView(withText("Buscando América"))
-            .perform(ViewActions.scrollTo())
+            .perform(scrollTo())
             .perform(click())
-        Thread.sleep(1000)
 
+        Thread.sleep(1000)
         val textView = onView(
             allOf(
-                withText("Detalle Álbum"),
-                withParent(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
-                    )
-                ),
+                withId(R.id.textName), withText("Buscando América"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Detalle Álbum")))
+        textView.check(ViewAssertions.matches(withText("Buscando América")))
+        onView(withText("Tracks"))
+            .perform(scrollTo())
+            .perform(click())
 
-        val appCompatImageButton = onView(
-            allOf(
-                withContentDescription("Navigate up"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton.perform(click())
         Thread.sleep(1000)
-        val textView2 = onView(
-            allOf(
-                withText("Albumes"),
-                withParent(
-                    allOf(
-                        withId(R.id.my_toolbar),
-                        withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
+        val appCompatEditText = onView(
+                allOf(
+                    withId(R.id.txtTrackName),
+                    childAtPosition(
+                        childAtPosition(
+                            withClassName(`is`("android.widget.ScrollView")),
+                            0
+                        ),
+                        1
                     )
-                ),
+                )
+                )
+        appCompatEditText.perform(scrollTo(), replaceText("Todos vuelven"), closeSoftKeyboard())
+
+        onView(withText("Asociar"))
+            .perform(scrollTo())
+            .perform(click())
+        val button = onView(
+            allOf(
+                withId(R.id.btnasociar), withText("Asociar"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        button.check(ViewAssertions.matches(isDisplayed()))
     }
 
     private fun childAtPosition(

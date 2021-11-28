@@ -3,12 +3,10 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -16,10 +14,8 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -55,23 +51,13 @@ class PE34CasaDiscografica {
             .perform(click())
 
         Thread.sleep(1000)
-        val textView = onView(
-            allOf(
-                withId(R.id.textCasaDiscoTitle), withText("Casa discográfica"),
-                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Casa discográfica")))
 
-        val textView2 = onView(
-            allOf(
-                withId(R.id.textCasaDiscoValue), withText("Elektra"),
-                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Elektra")))
+        onView(withText("Casa discográfica"))
+            .perform(ViewActions.scrollTo())
+            .check(matches(isDisplayed()))
+        onView(withText("Elektra"))
+            .perform(ViewActions.scrollTo())
+            .check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(
