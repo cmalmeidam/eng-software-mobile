@@ -59,10 +59,10 @@ class PE34CasaDiscografica {
 
         onView(withText("Casa discográfica"))
             .perform(ViewActions.scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("Elektra"))
             .perform(ViewActions.scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

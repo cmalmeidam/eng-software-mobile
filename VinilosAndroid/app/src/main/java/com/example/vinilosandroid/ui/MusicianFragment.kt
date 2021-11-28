@@ -45,12 +45,12 @@ class MusicianFragment : Fragment() {
         activity.actionBar?.title = getString(R.string.artistas)
         viewModel = ViewModelProvider(this, MusicianViewModel.Factory(activity.application)).get(
             MusicianViewModel::class.java)
-        viewModel.musicians.observe(viewLifecycleOwner, Observer<List<Musician>> {
+        viewModel.musicians.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.musicians = this
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

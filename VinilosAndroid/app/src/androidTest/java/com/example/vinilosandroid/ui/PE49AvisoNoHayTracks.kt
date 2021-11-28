@@ -69,7 +69,7 @@ class PE49AvisoNoHayTracks {
             .perform(click())
 
         Thread.sleep(1000)
-        onView(withText("No hay tracks asociados a este álbum")).perform(scrollTo()).check(ViewAssertions.matches(isDisplayed()))
+        onView(withText("No hay tracks asociados a este álbum")).perform(scrollTo()).check(matches(isDisplayed()))
 
     }
 

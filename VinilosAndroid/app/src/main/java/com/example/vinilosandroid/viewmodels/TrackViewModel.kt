@@ -7,18 +7,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
-import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.databinding.TrackFragmentBinding
 import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.repositories.TracksRepository
-import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
-import com.example.vinilosandroid.ui.TrackFragment
 import com.example.vinilosandroid.ui.TrackFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
-import java.text.SimpleDateFormat
 
 class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel(application) {
 

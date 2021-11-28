@@ -13,7 +13,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.AlbumDetailFragmentBinding
 import com.example.vinilosandroid.models.Album
-import com.squareup.picasso.Picasso
 
 
 class AlbumDetailFragment : Fragment() {

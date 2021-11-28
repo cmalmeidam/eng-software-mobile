@@ -100,7 +100,7 @@ class PE26CreacionAlbumDescripcionVacia {
                         withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
                     )
                 ))).perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
 
         materialButton.perform(click())
 

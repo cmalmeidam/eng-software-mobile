@@ -53,16 +53,16 @@ class PE33FechaLanzamiento {
 
         Thread.sleep(1000)
         onView(withText("A Day at the Races"))
-            .perform(ViewActions.scrollTo())
+            .perform(scrollTo())
             .perform(click())
 
 
         onView(withText("Fecha de Lanzamiento"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("10-12-1976"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

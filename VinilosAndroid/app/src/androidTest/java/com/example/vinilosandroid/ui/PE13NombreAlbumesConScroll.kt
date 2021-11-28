@@ -60,19 +60,19 @@ class PE13NombreAlbumesConScroll {
         Thread.sleep(2000)
         onView(withText("Buscando América"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         Thread.sleep(2000)
         onView(withText("Poeta del pueblo"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         Thread.sleep(2000)
         onView(withText("A Night at the Opera"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         Thread.sleep(2000)
         onView(withText("A Day at the Races"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
 
     }
 

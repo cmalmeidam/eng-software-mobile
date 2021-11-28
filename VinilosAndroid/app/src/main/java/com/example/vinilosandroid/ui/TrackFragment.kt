@@ -12,8 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.TrackFragmentBinding
@@ -29,7 +27,6 @@ class TrackFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: TrackViewModel
     private var viewModelAdapter: TracksAdapter? = null
-    private lateinit var track:Track
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +55,7 @@ class TrackFragment : Fragment() {
         Log.d("Args", args.albumId.toString())
         _binding!!.album = Album(args.albumId,args.name,"","","","","")
         viewModel = ViewModelProvider(this, TrackViewModel.Factory(activity.application, args.albumId)).get(TrackViewModel::class.java)
-        viewModel.tracks.observe(viewLifecycleOwner, Observer<List<Track>> {
+        viewModel.tracks.observe(viewLifecycleOwner, {
             it.apply {
                 viewModelAdapter!!.tracks = this
                 if(this.isEmpty()){
@@ -68,7 +65,7 @@ class TrackFragment : Fragment() {
                 }
             }
         })
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
         binding.btnasociar.setOnClickListener {

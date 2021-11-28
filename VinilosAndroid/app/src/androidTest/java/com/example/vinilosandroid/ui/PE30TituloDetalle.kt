@@ -52,7 +52,7 @@ class PE30TituloDetalle {
         bottomNavigationItemView.perform(click())
         onView(withText("Buscando América"))
             .perform(ViewActions.scrollTo())
-            .perform(ViewActions.click())
+            .perform(click())
 
         Thread.sleep(1000)
         val textView = onView(
