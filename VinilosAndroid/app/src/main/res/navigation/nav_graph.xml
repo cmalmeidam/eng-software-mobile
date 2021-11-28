@@ -58,9 +58,6 @@
         android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
         android:label="@string/tiartistas"
         tools:layout="@layout/fragment_musician_detail" >
-        <action
-            android:id="@+id/action_musicianDetailFragment_to_musicianFragment"
-            app:destination="@id/musicianFragment" />
         <argument
             android:name="musicianId"
             app:argType="integer" />
