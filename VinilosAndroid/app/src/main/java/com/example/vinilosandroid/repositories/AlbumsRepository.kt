@@ -60,16 +60,9 @@ class AlbumsRepository (val application: Application){
         }
     }
 
-
-
     suspend fun postData(
-        albumnName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
+        album:Album
     ){
-        NetworkServiceAdapter.getInstance(application).postAlbum(albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+        NetworkServiceAdapter.getInstance(application).postAlbum(album
         )
     }}

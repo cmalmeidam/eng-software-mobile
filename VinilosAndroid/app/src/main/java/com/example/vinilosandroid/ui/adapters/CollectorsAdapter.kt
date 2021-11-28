@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.CollectorItemBinding
 import com.example.vinilosandroid.models.Collector
-/*import com.example.vinilosandroid.ui.CollectorFragmentDirections*/
 
 class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 

@@ -4,9 +4,7 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -116,7 +114,7 @@ class PE24CreacionAlbum {
                         withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
                     )
                 ))).perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
 
         materialButton.perform(click())
 

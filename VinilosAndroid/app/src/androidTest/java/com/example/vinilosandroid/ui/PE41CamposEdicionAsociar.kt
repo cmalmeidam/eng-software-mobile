@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -34,66 +33,66 @@ class PE41CamposEdicionAsociar {
     fun pE41CamposEdicionAsociar() {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
-                allOf(
-                        withId(R.id.albumFragment), withContentDescription("Albumes"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.bottomnav),
-                                        0
-                                ),
-                                0
-                        ),
-                        isDisplayed()
-                )
+            allOf(
+                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottomnav),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
         )
         bottomNavigationItemView.perform(click())
         Thread.sleep(1000)
         onView(withText("Buscando América"))
-                .perform(scrollTo())
-                .perform(click())
+            .perform(scrollTo())
+            .perform(click())
 
         Thread.sleep(1000)
         val textView = onView(
-                allOf(
-                        withId(R.id.textName), withText("Buscando América"),
-                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                        isDisplayed()
-                )
+            allOf(
+                withId(R.id.textName), withText("Buscando América"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
         )
         textView.check(matches(withText("Buscando América")))
         onView(withText("Tracks"))
-                .perform(scrollTo())
-                .perform(click())
+            .perform(scrollTo())
+            .perform(click())
 
         Thread.sleep(1000)
 
         val editText = onView(
-                allOf(
-                        withId(R.id.txtTrackName),
-                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                        isDisplayed()
-                )
+            allOf(
+                withId(R.id.txtTrackName),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
         )
 
         onView(
-                allOf(
-                        withId(R.id.txtMinutos),
-                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                        isDisplayed()
-                )
+            allOf(
+                withId(R.id.txtMinutos),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
         )
 
         onView(
-                allOf(
-                        withId(R.id.txtSegundos),
-                        withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
-                        isDisplayed()
-                )
+            allOf(
+                withId(R.id.txtSegundos),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
+                isDisplayed()
+            )
         )
     }
 
     private fun childAtPosition(
-            parentMatcher: Matcher<View>, position: Int
+        parentMatcher: Matcher<View>, position: Int
     ): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {

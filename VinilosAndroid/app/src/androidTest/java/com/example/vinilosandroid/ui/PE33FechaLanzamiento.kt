@@ -4,10 +4,8 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -18,11 +16,9 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.concurrent.thread
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -53,16 +49,16 @@ class PE33FechaLanzamiento {
 
         Thread.sleep(1000)
         onView(withText("A Day at the Races"))
-            .perform(ViewActions.scrollTo())
+            .perform(scrollTo())
             .perform(click())
 
 
         onView(withText("Fecha de Lanzamiento"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withText("10-12-1976"))
             .perform(scrollTo())
-            .check(ViewAssertions.matches(isDisplayed()))
+            .check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

@@ -32,7 +32,7 @@ class TracksRepository (val application: Application){
         }
     }
 
-    suspend fun getTracks(albumId:Int): List<Track>{
+    fun getTracks(albumId:Int): List<Track>{
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.TRACKS_SPREFS)
         if(prefs.contains(albumId.toString())){
             val storedVal = prefs.getString(albumId.toString(), "")
@@ -44,7 +44,7 @@ class TracksRepository (val application: Application){
         }
         return listOf<Track>()
     }
-    suspend fun addTracks(albumId:Int, tracks: List<Track>){
+    fun addTracks(albumId:Int, tracks: List<Track>){
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.TRACKS_SPREFS)
         var store = format.encodeToString(tracks)
         with(prefs.edit(),{

@@ -1,5 +1,6 @@
 package com.example.vinilosandroid.ui
 
+import android.app.ActivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -8,7 +9,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -31,6 +31,16 @@ class MainActivity : AppCompatActivity() {
             fallbackOnNavigateUpListener = ::onSupportNavigateUp)
         binding.myToolbar.setupWithNavController(navController, appBarConfiguration)
 
+        getMemoryInfo()
+    }
+
+    private fun getMemoryInfo() {
+        val activityManager = this.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        val memoryInfo = ActivityManager.MemoryInfo()
+        activityManager.getMemoryInfo(memoryInfo)
+        if (!memoryInfo.lowMemory) {
+            TRIM_MEMORY_RUNNING_LOW
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
