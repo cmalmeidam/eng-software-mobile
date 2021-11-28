@@ -1,6 +1,5 @@
 package com.example.vinilosandroid.ui
 
-import android.app.Activity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -14,9 +13,6 @@ import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.viewmodels.AlbumCreateViewModel
-import androidx.lifecycle.Observer
-import com.example.vinilosandroid.viewmodels.AlbumViewModel
-import java.lang.Exception
 import java.text.SimpleDateFormat
 
 
@@ -44,7 +40,7 @@ class CreateAlbumFragment : Fragment() {
         _binding!!.crearAlbumBtn.setOnClickListener {
         processInformation()
         }
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
+        viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
     }

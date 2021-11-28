@@ -2,9 +2,6 @@ package com.example.vinilosandroid.network
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.collection.ArrayMap
-import androidx.collection.arrayMapOf
-import com.example.vinilosandroid.models.Track
 
 class CacheManager(context: Context) {
     companion object {

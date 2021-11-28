@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf

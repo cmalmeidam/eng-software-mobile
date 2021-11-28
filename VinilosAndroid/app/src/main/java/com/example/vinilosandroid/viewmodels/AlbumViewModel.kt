@@ -1,17 +1,9 @@
 package com.example.vinilosandroid.viewmodels
 
-import android.app.Activity
 import android.app.Application
-import android.text.TextUtils
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.repositories.AlbumsRepository
-import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
-import java.lang.Exception
-import java.text.SimpleDateFormat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

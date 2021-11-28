@@ -1,20 +1,12 @@
 package com.example.vinilosandroid.viewmodels
 
-import android.app.Activity
 import android.app.Application
-import android.text.TextUtils
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import com.example.vinilosandroid.databinding.TrackFragmentBinding
 import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.repositories.TracksRepository
-import com.example.vinilosandroid.ui.TrackFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel(application) {
 
