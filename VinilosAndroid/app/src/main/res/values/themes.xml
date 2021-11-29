@@ -20,4 +20,8 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+    <style name="EditText" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColorHint">@color/hints</item>
+    </style>
+
 </resources>

@@ -90,7 +90,7 @@ class PE27CreacionAlbumFechaVacia {
 
         val materialButton = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("Crear Album"),
+                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("Crear Álbum"),
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),

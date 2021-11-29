@@ -39,7 +39,7 @@
                 android:layout_marginTop="15dp"
                 android:adjustViewBounds="true"
                 android:background="@color/light"
-                android:contentDescription="@{album.name}"
+                android:contentDescription="@{@string/content(album.name)}"
                 android:elevation="4dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

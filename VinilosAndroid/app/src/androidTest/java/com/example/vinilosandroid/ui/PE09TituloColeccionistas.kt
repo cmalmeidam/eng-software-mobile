@@ -47,12 +47,12 @@ class PE09TituloColeccionistas {
         Thread.sleep(1000)
         val textView = onView(
             allOf(
-                withId(R.id.textView6), withText("Coleccionistas"),
+                withId(R.id.textView6), withText("Coleccionistas para tí"),
                 withParent(withParent(withId(R.id.nav_host_fragment))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Coleccionistas")))
+        textView.check(matches(withText("Coleccionistas para tí")))
     }
 
     private fun childAtPosition(

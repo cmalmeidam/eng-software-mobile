@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.vinilosandroid.ui.CollectorFragment"
-        android:label="@string/coleccionistas"
+        android:label="@string/listacoleccionistas"
         tools:layout="@layout/collector_fragment" >
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/albumes"
+        android:label="@string/listaalbumes"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
-        android:label="@string/artistas"
+        android:label="@string/listaartistas"
         tools:layout="@layout/musician_fragment" >
         <action
             android:id="@+id/action_musicianFragment_to_musicianDetailFragment"
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.example.vinilosandroid.ui.AlbumDetailFragment"
-        android:label="Detalle Álbum"
+        android:label="@string/detallealbum"
         tools:layout="@layout/album_detail_fragment" >
         <argument
             android:name="albumId"

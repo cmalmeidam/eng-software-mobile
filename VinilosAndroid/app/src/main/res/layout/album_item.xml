@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@{album.name}"
+                    android:contentDescription="@{@string/contentalbum(album.name,album.albumId)}"
                     tools:srcCompat="@drawable/ic_album" />
 
                 <TextView
@@ -47,14 +47,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="roboto"
-                    android:text="@{album.genre}"
-                    android:textAlignment="center"
-                    android:textSize="16sp" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

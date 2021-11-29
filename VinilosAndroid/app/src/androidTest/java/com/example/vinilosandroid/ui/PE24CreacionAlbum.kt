@@ -107,7 +107,7 @@ class PE24CreacionAlbum {
 
         val materialButton = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("Crear Album"),
+                withId(R.id.crearAlbumBtn), withText("Crear Álbum"),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),

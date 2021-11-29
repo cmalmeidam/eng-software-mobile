@@ -35,7 +35,7 @@ class PE37NavegacionBackArrowDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -87,7 +87,7 @@ class PE37NavegacionBackArrowDetalle {
         Thread.sleep(1000)
         val textView2 = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -97,7 +97,7 @@ class PE37NavegacionBackArrowDetalle {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        textView2.check(matches(withText("Lista de Álbumes")))
     }
 
     private fun childAtPosition(

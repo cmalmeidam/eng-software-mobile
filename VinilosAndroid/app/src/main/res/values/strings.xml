@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Vinilos</string>
     <string name="coleccionistas">Coleccionistas</string>
-    <string name="albumes">Albumes</string>
-    <string name="tialbumes">Albumes para tí</string>
+    <string name="albumes">Álbumes</string>
+    <string name="tialbumes">Álbumes para tí</string>
     <string name="artistas">Artistas</string>
     <string name="fecha_det_artista">Fecha nacimiento</string>
     <string name="tiartistas">Artistas para tí</string>
@@ -10,11 +10,11 @@
     <string name="fecha_lanz_title">Fecha de Lanzamiento</string>
     <string name="genero_title">Género</string>
     <string name="albumdateformat">dd/mm/yyyy</string>
-    <string name="createAlbum">Crear Album</string>
-    <string name="albumNameTitle">Nombre del Album</string>
-    <string name="albumDescriptionTitle">Descripción del Album</string>
+    <string name="createAlbum">Crear Álbum</string>
+    <string name="albumNameTitle">Nombre del Álbum</string>
+    <string name="albumDescriptionTitle">Descripción del álbum</string>
     <string name="albumRecordLabelSelectorTitle">Disquera</string>
-    <string name="albumCoverURLTitle">URL Portada Album</string>
+    <string name="albumCoverURLTitle">URL Portada álbum</string>
     <string name="asociar">Asociar</string>
     <string name="asociar_tracks">Asociar tracks</string>
     <string name="txt_no_tracks">No hay tracks asociados a este álbum</string>
@@ -24,4 +24,11 @@
     <string name="signoigual">:</string>
     <string name="segundos">Segundos</string>
     <string name="minutos">Minutos</string>
+    <string name="listaalbumes">Lista de Álbumes</string>
+    <string name="listaartistas">Lista de Artistas</string>
+    <string name="listacoleccionistas">Lista de Coleccionistas</string>
+    <string name="detallealbum">Detalle Álbum</string>
+    <string name="coleccionistasparati">Coleccionistas para tí</string>
+    <string name="content">Imagen de %s</string>
+    <string name="contentalbum">Imagen de %s %d</string>
 </resources>

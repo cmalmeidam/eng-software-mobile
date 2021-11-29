@@ -32,7 +32,7 @@ class PE10ImagenesAlbumes {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -46,23 +46,23 @@ class PE10ImagenesAlbumes {
         bottomNavigationItemView.perform(click())
 
         Thread.sleep(1000)
-        onView(withContentDescription("Buscando América"))
+        onView(withContentDescription("Imagen de Buscando América 100"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Thread.sleep(1000)
-        onView(withContentDescription("Poeta del pueblo"))
+        onView(withContentDescription("Imagen de Poeta del pueblo 101"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
         Thread.sleep(1000)
 
-        onView(withContentDescription("A Night at the Opera"))
+        onView(withContentDescription("Imagen de A Night at the Opera 102"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Thread.sleep(1000)
 
-        onView(withContentDescription("A Day at the Races")).perform(scrollTo()).check(matches(isDisplayed()))
+        onView(withContentDescription("Imagen de A Day at the Races 103")).perform(scrollTo()).check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

@@ -59,7 +59,7 @@ class PE06FuncionamientoBarra {
         Thread.sleep(1000)
         val bottomNavigationItemView2 = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -74,12 +74,12 @@ class PE06FuncionamientoBarra {
         Thread.sleep(1000)
         val textView2 = onView(
             allOf(
-                withId(R.id.textView7), withText("Albumes para tí"),
+                withId(R.id.textView7), withText("Álbumes para tí"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes para tí")))
+        textView2.check(matches(withText("Álbumes para tí")))
         Thread.sleep(1000)
         val bottomNavigationItemView3 = onView(
             allOf(
@@ -98,12 +98,12 @@ class PE06FuncionamientoBarra {
 
         val textView3 = onView(
             allOf(
-                withId(R.id.textView6), withText("Coleccionistas"),
+                withId(R.id.textView6), withText("Coleccionistas para tí"),
                 withParent(withParent(withId(R.id.nav_host_fragment))),
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("Coleccionistas")))
+        textView3.check(matches(withText("Coleccionistas para tí")))
     }
 
     private fun childAtPosition(

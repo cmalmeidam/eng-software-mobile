@@ -111,7 +111,7 @@ class PE39e2eCreacionCatalogoDetalle {
 
         val materialButton = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("Crear Album"),
+                withId(R.id.crearAlbumBtn), withText("Crear Álbum"),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),
@@ -133,7 +133,7 @@ class PE39e2eCreacionCatalogoDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
