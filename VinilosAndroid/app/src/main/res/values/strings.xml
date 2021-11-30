@@ -34,4 +34,6 @@
     <string name="coleccionistasparati">Coleccionistas para tí</string>
     <string name="content">Imagen de %s</string>
     <string name="contentalbum">Imagen de %s %d</string>
+    <string name="detallecolec">Detalle de Coleccionista</string>
+    <string name="avatar">Avatar de Coleccionista</string>
 </resources>

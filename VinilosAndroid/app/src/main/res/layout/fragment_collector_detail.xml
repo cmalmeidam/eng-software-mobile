@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/coleccionistas"
+                android:contentDescription="@string/avatar"
                 android:src="@drawable/ic_collector"
                 tools:srcCompat="@drawable/ic_collector" />
 

@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/collectorDetailFragment"
         android:name="com.example.vinilosandroid.ui.CollectorDetailFragment"
-        android:label="@string/coleccionistas"
+        android:label="@string/detallecolec"
         tools:layout="@layout/fragment_collector_detail">
         <argument
             android:name="collectorId"
