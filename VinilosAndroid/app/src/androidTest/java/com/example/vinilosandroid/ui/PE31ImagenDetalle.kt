@@ -34,7 +34,7 @@ class PE31ImagenDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -54,7 +54,7 @@ class PE31ImagenDetalle {
         Thread.sleep(1000)
         val imageView = onView(
             allOf(
-                withId(R.id.item_cover_iv), withContentDescription("Poeta del pueblo"),
+                withId(R.id.item_cover_iv), withContentDescription("Imagen de Poeta del pueblo"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )

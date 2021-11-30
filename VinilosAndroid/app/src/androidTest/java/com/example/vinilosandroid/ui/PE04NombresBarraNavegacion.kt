@@ -31,19 +31,19 @@ class PE04NombresBarraNavegacion {
         Thread.sleep(100)
         val textView = onView(
             allOf(
-                withId(R.id.largeLabel), withText("Albumes"),
+                withId(R.id.largeLabel), withText("Álbumes"),
                 withParent(
                     withParent(
                         allOf(
                             withId(R.id.albumFragment),
-                            withContentDescription("Albumes")
+                            withContentDescription("Álbumes")
                         )
                     )
                 ),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Albumes")))
+        textView.check(matches(withText("Álbumes")))
         Thread.sleep(100)
         val textView2 = onView(
             allOf(

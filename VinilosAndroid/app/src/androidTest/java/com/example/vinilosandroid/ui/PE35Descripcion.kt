@@ -33,7 +33,7 @@ class PE35Descripcion {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),

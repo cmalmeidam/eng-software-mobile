@@ -92,7 +92,7 @@ class PE26CreacionAlbumDescripcionVacia {
 
         val materialButton = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("Crear Album"),
+                withId(R.id.crearAlbumBtn), withText("Crear Álbum"),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),
@@ -106,7 +106,7 @@ class PE26CreacionAlbumDescripcionVacia {
 
         val button = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("CREAR ALBUM"),
+                withId(R.id.crearAlbumBtn), withText("CREAR ÁLBUM"),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),

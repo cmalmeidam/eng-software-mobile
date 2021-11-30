@@ -94,7 +94,7 @@ class PE28CreacionAlbumNombreVacio {
 
         val materialButton = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("Crear Album"),
+                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("Crear Álbum"),
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
@@ -109,7 +109,7 @@ class PE28CreacionAlbumNombreVacio {
 
         val button = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("CREAR ALBUM"),
+                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("CREAR ÁLBUM"),
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),

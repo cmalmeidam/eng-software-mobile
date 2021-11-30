@@ -35,7 +35,7 @@ class PE05IconosBarraNavegacion {
                 withId(R.id.icon),
                 withParent(
                     allOf(
-                        withId(R.id.albumFragment), withContentDescription("Albumes"),
+                        withId(R.id.albumFragment), withContentDescription("Álbumes"),
                         withParent(IsInstanceOf.instanceOf(android.view.View::class.java))
                     )
                 ),

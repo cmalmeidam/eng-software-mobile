@@ -13,7 +13,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="roboto"
-            android:text="@string/coleccionistas"
+            android:text="@string/coleccionistasparati"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"

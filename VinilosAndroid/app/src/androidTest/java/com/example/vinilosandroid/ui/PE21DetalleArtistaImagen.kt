@@ -60,7 +60,7 @@ class PE21DetalleArtistaImagen {
         val imageView = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.item_image_iv),
-                ViewMatchers.withContentDescription("Rubén Blades Bellido de Luna"),
+                ViewMatchers.withContentDescription("Imagen de Rubén Blades Bellido de Luna"),
                 ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
                 ViewMatchers.isDisplayed()
             )

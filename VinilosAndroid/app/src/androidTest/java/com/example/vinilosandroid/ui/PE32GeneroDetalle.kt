@@ -34,7 +34,7 @@ class PE32GeneroDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -47,7 +47,7 @@ class PE32GeneroDetalle {
         )
         bottomNavigationItemView.perform(click())
 
-        onView(withContentDescription("A Day at the Races"))
+        onView(withContentDescription("Imagen de A Day at the Races 103"))
             .perform(ViewActions.scrollTo())
             .perform(click())
 

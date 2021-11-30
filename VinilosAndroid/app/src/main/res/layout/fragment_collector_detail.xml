@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/coleccionistas"
+                android:contentDescription="@string/avatar"
                 android:src="@drawable/ic_collector"
                 tools:srcCompat="@drawable/ic_collector" />
 
@@ -62,9 +62,9 @@
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="183dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:fontFamily="roboto"
                     android:gravity="center|start"
                     android:minHeight="50dp"
@@ -95,9 +95,9 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="179dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:fontFamily="roboto"
                     android:gravity="center|start"
                     android:minHeight="50dp"

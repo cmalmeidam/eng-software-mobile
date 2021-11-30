@@ -7,6 +7,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#2E5984</color>
-    <color name="light">#f3f1f3</color>
+    <color name="light">#f7f7f7</color>
+    <color name="hints">#535153</color>
 
 </resources>

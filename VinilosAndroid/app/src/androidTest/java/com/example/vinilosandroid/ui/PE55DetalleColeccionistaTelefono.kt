@@ -51,12 +51,12 @@ class PE55DetalleColeccionistaTelefono {
         Thread.sleep(1000)
         val textView = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.textView6), ViewMatchers.withText("Coleccionistas"),
+                ViewMatchers.withId(R.id.textView6), ViewMatchers.withText("Coleccionistas para tí"),
                 ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.nav_host_fragment))),
                 ViewMatchers.isDisplayed()
             )
         )
-        textView.check(ViewAssertions.matches(ViewMatchers.withText("Coleccionistas")))
+        textView.check(ViewAssertions.matches(ViewMatchers.withText("Coleccionistas para tí")))
 
         val recyclerView = Espresso.onView(
             Matchers.allOf(

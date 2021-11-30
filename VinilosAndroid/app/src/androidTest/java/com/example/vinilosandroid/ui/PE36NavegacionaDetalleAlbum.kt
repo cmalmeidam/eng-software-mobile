@@ -34,7 +34,7 @@ class PE36NavegacionaDetalleAlbum {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -49,7 +49,7 @@ class PE36NavegacionaDetalleAlbum {
 
         val textView = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -59,7 +59,7 @@ class PE36NavegacionaDetalleAlbum {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Albumes")))
+        textView.check(matches(withText("Lista de Álbumes")))
 
         onView(withText("Buscando América"))
             .perform(ViewActions.scrollTo())
