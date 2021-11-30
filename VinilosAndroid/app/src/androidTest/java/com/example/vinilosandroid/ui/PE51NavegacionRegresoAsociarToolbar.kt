@@ -35,7 +35,7 @@ class PE51NavegacionRegresoAsociarToolbar {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -50,7 +50,7 @@ class PE51NavegacionRegresoAsociarToolbar {
 
         val textView = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -60,7 +60,7 @@ class PE51NavegacionRegresoAsociarToolbar {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Albumes")))
+        textView.check(matches(withText("Lista de Álbumes")))
 
         onView(withText("Buscando América"))
             .perform(ViewActions.scrollTo())
@@ -149,7 +149,7 @@ class PE51NavegacionRegresoAsociarToolbar {
         Thread.sleep(1000)
         val textView6 = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -159,7 +159,7 @@ class PE51NavegacionRegresoAsociarToolbar {
                 isDisplayed()
             )
         )
-        textView6.check(matches(withText("Albumes")))
+        textView6.check(matches(withText("Lista de Álbumes")))
     }
 
     private fun childAtPosition(

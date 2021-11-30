@@ -106,7 +106,7 @@ class PE29CreacionUrlvacia {
 
         val button = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("CREAR ALBUM"),
+                ViewMatchers.withId(R.id.crearAlbumBtn), ViewMatchers.withText("CREAR ÁLBUM"),
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),

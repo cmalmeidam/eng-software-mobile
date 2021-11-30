@@ -47,7 +47,7 @@ class PE32GeneroDetalle {
         )
         bottomNavigationItemView.perform(click())
 
-        onView(withContentDescription("Imagen de A Day at the Races"))
+        onView(withContentDescription("Imagen de A Day at the Races 103"))
             .perform(ViewActions.scrollTo())
             .perform(click())
 

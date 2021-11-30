@@ -140,7 +140,7 @@ class PE19NavegacionRegresoDetalleArtistaToolbar {
         Thread.sleep(1000)
         val textView6 = onView(
             allOf(
-                withText("Álbumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -150,7 +150,7 @@ class PE19NavegacionRegresoDetalleArtistaToolbar {
                 isDisplayed()
             )
         )
-        textView6.check(matches(withText("Álbumes")))
+        textView6.check(matches(withText("Lista de Álbumes")))
     }
 
     private fun childAtPosition(
