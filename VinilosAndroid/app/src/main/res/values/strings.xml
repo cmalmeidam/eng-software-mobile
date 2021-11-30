@@ -4,8 +4,8 @@
     <string name="coleccionista_placeholder">https://images.vexels.com/media/users/3/184296/isolated/lists/8724a4c4e98891b44c2bedbbf710423a-icono-de-reproductor-de-discos-de-musica.png</string>
     <string name="telefono_det_coleccionista">Teléfono</string>
     <string name="correo_det_coleccionista">Correo</string>
-    <string name="albumes">Albumes</string>
-    <string name="tialbumes">Albumes para tí</string>
+    <string name="albumes">Álbumes</string>
+    <string name="tialbumes">Álbumes para tí</string>
     <string name="artistas">Artistas</string>
     <string name="fecha_det_artista">Fecha nacimiento</string>
     <string name="tiartistas">Artistas para tí</string>
