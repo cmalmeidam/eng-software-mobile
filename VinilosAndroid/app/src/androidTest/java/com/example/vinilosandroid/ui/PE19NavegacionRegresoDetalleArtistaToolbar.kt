@@ -76,7 +76,7 @@ class PE19NavegacionRegresoDetalleArtistaToolbar {
         Thread.sleep(1000)
         val textView3 = onView(
             allOf(
-                withText("Artistas para tí"),
+                withText("Detalle de Artistas"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -86,7 +86,7 @@ class PE19NavegacionRegresoDetalleArtistaToolbar {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("Artistas para tí")))
+        textView3.check(matches(withText("Detalle de Artistas")))
         Thread.sleep(1000)
         val appCompatImageButton = onView(
             allOf(

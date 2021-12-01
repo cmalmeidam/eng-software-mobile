@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -28,12 +29,14 @@ class AlbumDetailFragment : Fragment() {
         val view = binding.root
         return view
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.root.announceForAccessibility(getString(R.string.detallealbum))
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.tialbumes)
 
         val args: AlbumDetailFragmentArgs by navArgs()
        _binding?.album = Album(

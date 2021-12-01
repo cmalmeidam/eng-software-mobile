@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,6 +26,9 @@ class CollectorDetailFragment : Fragment() {
         var view = binding.root
         return view
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.root.announceForAccessibility(getString(R.string.detallecolec))
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -32,7 +36,6 @@ class CollectorDetailFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         val args: CollectorDetailFragmentArgs by navArgs()
-        activity.actionBar?.title = getString(R.string.coleccionistas)
         binding.collector = Collector(
             args.collectorId, args.name, args.telephone, args.email)
         Glide.with(activity)
