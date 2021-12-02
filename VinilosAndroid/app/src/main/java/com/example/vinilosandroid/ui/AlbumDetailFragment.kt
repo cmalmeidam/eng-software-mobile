@@ -56,7 +56,7 @@ class AlbumDetailFragment : Fragment() {
             .into(_binding!!.itemCoverIv)
         _binding!!.btnTracks!!.setOnClickListener{
             val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToTrackFragment(args.albumId, args.name)
-            _binding!!.root.findNavController().navigate(action)
+            _binding!!.root.findNavController().navigateSafe(action.actionId, action.arguments)
         }
     }
 
