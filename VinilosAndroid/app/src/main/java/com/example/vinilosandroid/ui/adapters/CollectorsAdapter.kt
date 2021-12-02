@@ -10,6 +10,7 @@ import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.CollectorItemBinding
 import com.example.vinilosandroid.models.Collector
 import com.example.vinilosandroid.ui.CollectorFragmentDirections
+import com.example.vinilosandroid.ui.navigateSafe
 
 
 class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
@@ -40,7 +41,7 @@ class CollectorsAdapter: RecyclerView.Adapter<CollectorsAdapter.CollectorViewHol
                 collectors[position].telephone,
                 collectors[position].email
             )
-            holder.viewDataBinding.root.findNavController().navigate(action)
+            holder.viewDataBinding.root.findNavController().navigateSafe(action.actionId, action.arguments)
         }
     }
 

@@ -14,6 +14,7 @@ import com.example.vinilosandroid.ui.AlbumFragmentDirections
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.example.vinilosandroid.ui.navigateSafe
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
     var albums :List<Album> = emptyList()
@@ -49,7 +50,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
                 albums[position].releaseDate
             )
             // Navegate
-            holder.viewDataBinding.root.findNavController().navigate(action)
+            holder.viewDataBinding.root.findNavController().navigateSafe(action.actionId, action.arguments)
         }
     }
 

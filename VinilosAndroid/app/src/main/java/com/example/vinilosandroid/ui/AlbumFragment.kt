@@ -52,7 +52,7 @@ class AlbumFragment : Fragment() {
         })
         _binding!!.createAlbumButton.setOnClickListener {
             val action = AlbumFragmentDirections.actionAlbumFragmentToCreateAlbum()
-            _binding!!.createAlbumButton.findNavController().navigate(action)
+            _binding!!.createAlbumButton.findNavController().navigateSafe(action.actionId, action.arguments)
         }
     }
     override fun onDestroyView() {
