@@ -51,7 +51,7 @@ class CreateAlbumFragment : Fragment() {
                 var albumDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumRelease.text.toString()))
                 var album= Album(0, _binding!!.albumname.text.toString(), _binding!!.albumcover.text.toString(),albumDate,  _binding!!.albumdescription.text.toString(), _binding!!.genreSelector.selectedItem.toString(), _binding!!.recordLabelSelector.selectedItem.toString())
                 println(album)
-                viewModel.inicio(album)
+                viewModel.postDataFromNetwork(album)
                 val action = CreateAlbumFragmentDirections.actionCreateAlbumToAlbumDetailFragment(
                     0,
                     album.description,

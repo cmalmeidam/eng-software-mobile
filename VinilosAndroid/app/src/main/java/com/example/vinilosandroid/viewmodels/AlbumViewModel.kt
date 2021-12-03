@@ -24,7 +24,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         get() = _isNetworkErrorShown
 
     init {
-        inicio()
+        refreshDataFromNetwork()
     }
     fun inicio() {
         try {
@@ -37,23 +37,23 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             println("job: I'm cancel catch")}
     }
 
-    suspend fun refreshDataFromNetwork() {
+    private fun refreshDataFromNetwork() {
         try {
-            var job = viewModelScope.launch (Dispatchers.Default){
+            viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
                     var data = albumsRepository.refreshData()
                     _albums.postValue(data)
+                    println("esta es la lista de albumes refresh")
+                    println(data.size)
                 }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
             }
-            _eventNetworkError.postValue(false)
-            _isNetworkErrorShown.postValue(false)
-            delay(2000)
-            job.cancelAndJoin()
         }
         catch (e:Exception){
-            println("job: I'm cancel catch")
+            _eventNetworkError.value = true
         }
-        }
+    }
 
    suspend fun refreshDataFromNetwork2() {
        
@@ -62,11 +62,13 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
                 withContext(Dispatchers.IO) {
                     var data = albumsRepository.refreshData2()
                     _albums.postValue(data)
+                    println("esta es la lista de albumes refresh2")
+                    println(data.size)
                 }
             }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
-                delay(2000)
+                delay(4000)
                 job.cancelAndJoin()
             }
         catch (e:Exception){
@@ -88,7 +90,7 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             }
         } catch (e: Exception) {
             _eventNetworkError.value = true
-            println("enntra a catch")
+            println("entra a catch")
         } finally {
             try {
                 viewModelScope.launch(Dispatchers.Default) {
@@ -100,7 +102,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
                 println("job: I'm cancel finally")}
         }
     }
-
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
