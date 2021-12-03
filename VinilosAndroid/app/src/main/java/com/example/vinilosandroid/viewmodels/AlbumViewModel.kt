@@ -26,16 +26,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
     init {
         refreshDataFromNetwork()
     }
-    fun inicio() {
-        try {
-            viewModelScope.launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    refreshDataFromNetwork()
-                }
-            }
-        }catch (e: Exception) {
-            println("job: I'm cancel catch")}
-    }
 
     private fun refreshDataFromNetwork() {
         try {
