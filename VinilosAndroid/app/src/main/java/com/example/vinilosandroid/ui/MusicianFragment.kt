@@ -34,6 +34,7 @@ class MusicianFragment : Fragment() {
         recyclerView = binding.musiciansRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
+        binding.root.announceForAccessibility(getString(R.string.listaartistas))
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

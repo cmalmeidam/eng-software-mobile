@@ -45,6 +45,7 @@ class TrackFragment : Fragment() {
         recyclerView = binding.tracksRv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+        binding.root.announceForAccessibility(getString(R.string.asociar_tracks))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

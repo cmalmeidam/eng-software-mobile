@@ -60,7 +60,7 @@ class PE26CreacionAlbumDescripcionVacia {
 
         val inputFechaDeLanzamiento = onView(
             allOf(
-                withId(R.id.albumReleaseDate),
+                withId(R.id.albumRelease),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),

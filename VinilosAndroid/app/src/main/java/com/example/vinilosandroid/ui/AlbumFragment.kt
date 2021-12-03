@@ -35,6 +35,7 @@ class AlbumFragment : Fragment() {
         recyclerView = binding.albumsRv
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
+        binding.root.announceForAccessibility(getString(R.string.listaalbumes))
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

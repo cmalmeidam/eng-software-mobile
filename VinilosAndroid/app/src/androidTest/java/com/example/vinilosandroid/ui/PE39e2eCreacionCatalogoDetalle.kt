@@ -63,7 +63,7 @@ class PE39e2eCreacionCatalogoDetalle {
 
         val inputFechaDeLanzamiento = onView(
             allOf(
-                withId(R.id.albumReleaseDate),
+                withId(R.id.albumRelease),
                 withParent(
                     allOf(
                         withId(R.id.frameLayout),

@@ -11,7 +11,7 @@
     <string name="casa_disco_title">Casa discográfica</string>
     <string name="fecha_lanz_title">Fecha de Lanzamiento</string>
     <string name="genero_title">Género</string>
-    <string name="albumdateformat">dd/mm/yyyy</string>
+    <string name="albumdateformat">día/mes/año</string>
     <string name="createAlbum">Crear Álbum</string>
     <string name="albumNameTitle">Nombre del Álbum</string>
     <string name="albumDescriptionTitle">Descripción del álbum</string>
@@ -34,5 +34,10 @@
     <string name="content">Imagen de %s</string>
     <string name="contentalbum">Imagen de %s %d</string>
     <string name="detallecolec">Detalle de Coleccionista</string>
+    <string name="detalleartista">Detalle de Artistas</string>
     <string name="avatar">Avatar de Coleccionista</string>
+    <string name="contentbotoncrear">Crear para guardar álbum</string>
+    <string name="botonagregar">Agregar para ir a la pantalla crear álbum</string>
+    <string name="botonasociar">Asociar para guardar datos</string>
+    <string name="btnasociar">Tracks para ir a la vista de asociar track a un álbum</string>
 </resources>

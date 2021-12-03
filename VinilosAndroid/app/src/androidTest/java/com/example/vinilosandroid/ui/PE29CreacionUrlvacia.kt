@@ -54,7 +54,7 @@ class PE29CreacionUrlvacia {
 
         val inputFechaDeLanzamiento = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.albumReleaseDate),
+                ViewMatchers.withId(R.id.albumRelease),
                 ViewMatchers.withParent(
                     Matchers.allOf(
                         ViewMatchers.withId(R.id.frameLayout),
