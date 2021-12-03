@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.repositories.AlbumsRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
 
@@ -43,6 +41,52 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         catch (e:Exception){
             _eventNetworkError.value = true
         }
+        }
+
+   suspend fun refreshDataFromNetwork2() {
+       
+        try {
+            var job = viewModelScope.launch (Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = albumsRepository.refreshData2()
+                    _albums.postValue(data)
+                }
+            }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+                delay(2000)
+                job.cancelAndJoin()
+            }
+        catch (e:Exception){
+            _albums
+        }
+    }
+    fun postDataFromNetwork(
+        album:Album
+    ) {
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    albumsRepository.postData(
+                        album
+                    )
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        } catch (e: Exception) {
+            _eventNetworkError.value = true
+            println("enntra a catch")
+        } finally {
+            try {
+                viewModelScope.launch(Dispatchers.Default) {
+                    withContext(Dispatchers.IO) {
+                        refreshDataFromNetwork2()
+                    }
+                }
+            }catch (e: Exception) {
+                println("job: I'm cancel finally")}
+        }
     }
 
     fun onNetworkErrorShown() {
@@ -58,5 +102,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
+
 }
 

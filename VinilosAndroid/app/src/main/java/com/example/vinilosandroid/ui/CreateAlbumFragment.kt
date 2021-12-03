@@ -12,14 +12,14 @@ import androidx.navigation.findNavController
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
-import com.example.vinilosandroid.viewmodels.AlbumCreateViewModel
+import com.example.vinilosandroid.viewmodels.AlbumViewModel
 import java.text.SimpleDateFormat
 
 
 class CreateAlbumFragment : Fragment() {
     private var _binding: FragmentCreateAlbumBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AlbumCreateViewModel
+    private lateinit var viewModel: AlbumViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class CreateAlbumFragment : Fragment() {
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        viewModel = ViewModelProvider(this, AlbumCreateViewModel.Factory(activity.application)).get(AlbumCreateViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
         _binding!!.crearAlbumBtn.setOnClickListener {
         processInformation()
         }

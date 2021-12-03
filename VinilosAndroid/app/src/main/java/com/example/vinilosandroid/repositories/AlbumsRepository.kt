@@ -12,24 +12,27 @@ import kotlinx.serialization.encodeToString
 
 class AlbumsRepository (val application: Application){
     private var key = 3
+    val cm = application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     suspend fun refreshData(): List<Album> {
-        val cm =
-            application.baseContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE) {
-            var albums = getAlbums()
-            return if (albums.isNullOrEmpty()) {
+        var albums = getAlbums()
+        return if(albums.isNullOrEmpty()){
+            if( cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_WIFI && cm.activeNetworkInfo?.type != ConnectivityManager.TYPE_MOBILE){
                 emptyList()
             } else {
+                albums = NetworkServiceAdapter.getInstance(application).getAlbums()
+                addAlbums(key, albums)
                 albums
             }
-        }
-        else{
-           var albums = NetworkServiceAdapter.getInstance(application).getAlbums()
-            addAlbums(key, albums)
-            return albums
-        }
+        } else albums
     }
-
+    suspend fun refreshData2(): List<Album> {
+        var albums = listOf<Album>()
+        if (cm.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI || cm.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE) {
+            albums = NetworkServiceAdapter.getInstance(application).getAlbums()
+            addAlbums(key, albums)
+        }
+        return albums
+    }
     fun getAlbums(): List<Album>{
         val format = Json {  }
         val prefs = CacheManager.getPrefs(application.baseContext, CacheManager.ALBUMS_SPREFS)
@@ -62,7 +65,12 @@ class AlbumsRepository (val application: Application){
 
     suspend fun postData(
         album:Album
-    ){
-        NetworkServiceAdapter.getInstance(application).postAlbum(album
-        )
+    ){if (cm.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI || cm.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE) {
+            NetworkServiceAdapter.getInstance(application).postAlbum(
+                album
+            )
+        }
+        else{
+            println("no hay red")
+        }
     }}
