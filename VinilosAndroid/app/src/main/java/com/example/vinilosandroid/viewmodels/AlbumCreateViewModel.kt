@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.repositories.AlbumsRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AlbumCreateViewModel(application: Application) :  AndroidViewModel(application) {
 
@@ -25,21 +23,34 @@ class AlbumCreateViewModel(application: Application) :  AndroidViewModel(applica
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
-    fun postDataFromNetwork(
+    fun inicio(album:Album) {
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    postDataFromNetwork(album)
+                }
+            }
+        }catch (e: Exception) {
+            println("job: I'm cancel catch init")}
+    }
+    suspend fun postDataFromNetwork(
       album:Album
     ) {
         try {
-            viewModelScope.launch(Dispatchers.Default) {
+            var job = viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
                     albumsRepository.postData(
                         album
                     )
                 }
-                _eventNetworkError.postValue(false)
-                _isNetworkErrorShown.postValue(false)
             }
+            _eventNetworkError.postValue(false)
+            _isNetworkErrorShown.postValue(false)
+            delay(1000)
+            job.cancelAndJoin()
+            println("job: I'm cancel try")
         } catch (e: Exception) {
-            _eventNetworkError.value = true
+            println("job: I'm cancel catchpost")
         }
     }
 

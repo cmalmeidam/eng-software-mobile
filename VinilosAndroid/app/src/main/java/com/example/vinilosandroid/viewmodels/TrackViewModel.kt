@@ -2,11 +2,10 @@ package com.example.vinilosandroid.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.repositories.TracksRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel(application) {
 
@@ -51,20 +50,35 @@ class TrackViewModel (application: Application, albumId:Int) :  AndroidViewModel
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
+    fun inicio(track: Track) {
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    postDataFromNetwork(track)
+                }
+            }
+        }catch (e: Exception) {
+            println("job: I'm cancel catch")}
+    }
 
-    fun postDataFromNetwork(
+    suspend fun postDataFromNetwork(
         track: Track
     ) {
         try {
-            viewModelScope.launch(Dispatchers.Default) {
+            var job = viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
                     tracksRepository.postData(
                         id, track
                     )
                 }
             }
+            _eventNetworkError.postValue(false)
+            _isNetworkErrorShown.postValue(false)
+            delay(1000)
+            job.cancelAndJoin()
+            println("job: I'm cancel try")
         } catch (e: Exception) {
-            _eventNetworkError.value = true
+            println("job: I'm cancel catch")
         }
     }
 

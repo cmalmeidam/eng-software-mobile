@@ -72,8 +72,8 @@ class PE52DetalleColeccionistaNombre {
         Thread.sleep(1000)
         val textView2 = Espresso.onView(
             Matchers.allOf(
-                ViewMatchers.withId(R.id.textView16),
-                ViewMatchers.withParent(ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java))),
+                ViewMatchers.withId(R.id.textView16), ViewMatchers.withText("Manolo Bellon"),
+                ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.nav_host_fragment))),
                 ViewMatchers.isDisplayed()
             )
         )

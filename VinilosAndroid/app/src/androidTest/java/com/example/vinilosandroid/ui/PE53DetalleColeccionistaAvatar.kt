@@ -72,7 +72,8 @@ class PE53DetalleColeccionistaAvatar {
         val imageView = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.item_avatar_iv),
-                ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
+                ViewMatchers.withContentDescription("Avatar de Coleccionista"),
+                ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.nav_host_fragment))),
                 ViewMatchers.isDisplayed()
             )
         )
