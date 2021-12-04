@@ -48,7 +48,7 @@
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
         android:label="@string/listaartistas"
-        tools:layout="@layout/musician_fragment" >
+        tools:layout="@layout/musician_fragment">
         <action
             android:id="@+id/action_musicianFragment_to_musicianDetailFragment"
             app:destination="@id/musicianDetailFragment" />
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/musicianDetailFragment"
         android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
-        android:label="@string/tiartistas"
+        android:label="@string/detalleartista"
         tools:layout="@layout/fragment_musician_detail" >
         <argument
             android:name="musicianId"
@@ -113,7 +113,8 @@
         <action
             android:id="@+id/action_createAlbum_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment"
-            app:popUpTo="@id/albumFragment" />
+            app:popUpTo="@id/albumFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/trackFragment"

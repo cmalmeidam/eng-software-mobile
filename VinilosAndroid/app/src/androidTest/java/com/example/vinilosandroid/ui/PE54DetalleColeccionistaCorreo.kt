@@ -69,14 +69,15 @@ class PE54DetalleColeccionistaCorreo {
         )
         recyclerView.perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, ViewActions.click()))
         Thread.sleep(1000)
-        val textView2 = Espresso.onView(
+        val textView3 = Espresso.onView(
             Matchers.allOf(
                 ViewMatchers.withId(R.id.textView20),
-                ViewMatchers.withParent(IsInstanceOf.instanceOf(LinearLayout::class.java)),
+                ViewMatchers.withText("manollo@caracol.com.co"),
+                ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.nav_host_fragment))),
                 ViewMatchers.isDisplayed()
             )
         )
-        textView2.check(ViewAssertions.matches(ViewMatchers.withText("manollo@caracol.com.co")))
+        textView3.check(ViewAssertions.matches(ViewMatchers.withText("manollo@caracol.com.co")))
     }
 
     private fun childAtPosition(

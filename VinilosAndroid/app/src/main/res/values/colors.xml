@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_active">#0DE0DA</color>
+    <color name="color_active">#7EF8F4</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
@@ -9,5 +9,6 @@
     <color name="blue">#2E5984</color>
     <color name="light">#f7f7f7</color>
     <color name="hints">#535153</color>
+    <color name="stroke">#403F40</color>
 
 </resources>

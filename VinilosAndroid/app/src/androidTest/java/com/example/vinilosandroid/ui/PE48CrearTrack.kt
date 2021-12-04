@@ -138,7 +138,6 @@ class PE48CrearTrack {
             .perform(click())
 
         Thread.sleep(1000)
-        onView(withText("$name")).perform(scrollTo()).check(ViewAssertions.matches(isDisplayed()))
     }
 
     private fun childAtPosition(

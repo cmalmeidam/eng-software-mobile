@@ -35,6 +35,7 @@ class CollectorFragment : Fragment() {
         recyclerView = binding.fragmentsRv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+        binding.root.announceForAccessibility(getString(R.string.listacoleccionistas))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

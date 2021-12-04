@@ -12,14 +12,14 @@ import androidx.navigation.findNavController
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
-import com.example.vinilosandroid.viewmodels.AlbumCreateViewModel
+import com.example.vinilosandroid.viewmodels.AlbumViewModel
 import java.text.SimpleDateFormat
 
 
 class CreateAlbumFragment : Fragment() {
     private var _binding: FragmentCreateAlbumBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AlbumCreateViewModel
+    private lateinit var viewModel: AlbumViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +29,15 @@ class CreateAlbumFragment : Fragment() {
         val view = binding.root
         return view
     }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.root.announceForAccessibility(getString(R.string.createAlbum))
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
-        activity.actionBar?.title = getString(R.string.createAlbum)
-        viewModel = ViewModelProvider(this, AlbumCreateViewModel.Factory(activity.application)).get(AlbumCreateViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application)).get(AlbumViewModel::class.java)
         _binding!!.crearAlbumBtn.setOnClickListener {
         processInformation()
         }
@@ -45,9 +46,9 @@ class CreateAlbumFragment : Fragment() {
         })
     }
     fun processInformation(){
-        if(!TextUtils.isEmpty(_binding!!.albumname.text) && !TextUtils.isEmpty(_binding!!.albumcover.text) && !TextUtils.isEmpty(_binding!!.albumdescription.text) && !TextUtils.isEmpty(_binding!!.albumReleaseDate.text)) {
+        if(!TextUtils.isEmpty(_binding!!.albumname.text) && !TextUtils.isEmpty(_binding!!.albumcover.text) && !TextUtils.isEmpty(_binding!!.albumdescription.text) && !TextUtils.isEmpty(_binding!!.albumRelease.text)) {
             try {
-                var albumDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumReleaseDate.text.toString()))
+                var albumDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumRelease.text.toString()))
                 var album= Album(0, _binding!!.albumname.text.toString(), _binding!!.albumcover.text.toString(),albumDate,  _binding!!.albumdescription.text.toString(), _binding!!.genreSelector.selectedItem.toString(), _binding!!.recordLabelSelector.selectedItem.toString())
                 println(album)
                 viewModel.postDataFromNetwork(album)
@@ -65,9 +66,9 @@ class CreateAlbumFragment : Fragment() {
                 println(e)
             }
         } else {
-            when(TextUtils.isEmpty(_binding!!.albumname.text) || TextUtils.isEmpty(_binding!!.albumcover.text) || TextUtils.isEmpty(_binding!!.albumdescription.text) || TextUtils.isEmpty(_binding!!.albumReleaseDate.text)){
+            when(TextUtils.isEmpty(_binding!!.albumname.text) || TextUtils.isEmpty(_binding!!.albumcover.text) || TextUtils.isEmpty(_binding!!.albumdescription.text) || TextUtils.isEmpty(_binding!!.albumRelease.text)){
                 TextUtils.isEmpty(_binding!!.albumname.text) -> Toast.makeText(activity,"El nombre no puede estar vacio", Toast.LENGTH_LONG).show()
-                TextUtils.isEmpty(_binding!!.albumReleaseDate.text) -> Toast.makeText(activity,"La fecha no puede estar vacia", Toast.LENGTH_LONG).show()
+                TextUtils.isEmpty(_binding!!.albumRelease.text) -> Toast.makeText(activity,"La fecha no puede estar vacia", Toast.LENGTH_LONG).show()
                 TextUtils.isEmpty(_binding!!.albumcover.text) -> Toast.makeText(activity,"La url de la portada del album no puede estar vacia", Toast.LENGTH_LONG).show()
                 TextUtils.isEmpty(_binding!!.albumdescription.text) -> Toast.makeText(activity,"La descripcion no puede estar vacia", Toast.LENGTH_LONG).show()
 

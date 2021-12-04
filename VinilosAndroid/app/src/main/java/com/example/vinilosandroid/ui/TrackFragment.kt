@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,9 @@ import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.ui.adapters.TracksAdapter
 import com.example.vinilosandroid.viewmodels.TrackViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TrackFragment : Fragment() {
     private var _binding: TrackFragmentBinding? = null
@@ -41,6 +45,7 @@ class TrackFragment : Fragment() {
         recyclerView = binding.tracksRv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+        binding.root.announceForAccessibility(getString(R.string.asociar_tracks))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -100,7 +105,7 @@ class TrackFragment : Fragment() {
                         _binding!!.txtTrackName.text.toString(),
                         (_binding!!.txtMinutos.text.toString() + ":" + num)
                     )
-                    viewModel.postDataFromNetwork(track)
+                    viewModel.inicio(track)
                 } catch (e: Exception) {
                     Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
                     println(e)
