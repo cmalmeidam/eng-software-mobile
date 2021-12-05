@@ -33,7 +33,7 @@ class PE07TituloAlbumes {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -48,12 +48,12 @@ class PE07TituloAlbumes {
         Thread.sleep(1000)
         val textView = onView(
             allOf(
-                withId(R.id.textView7), withText("Albumes para tí"),
+                withId(R.id.textView7), withText("Álbumes para tí"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Albumes para tí")))
+        textView.check(matches(withText("Álbumes para tí")))
     }
 
     private fun childAtPosition(

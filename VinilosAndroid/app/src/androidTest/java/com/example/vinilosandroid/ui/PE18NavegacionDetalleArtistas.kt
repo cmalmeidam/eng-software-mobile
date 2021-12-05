@@ -51,7 +51,7 @@ class PE18NavegacionDetalleArtistas {
 
         val textView = onView(
             allOf(
-                withText("Artistas"),
+                withText("Lista de Artistas"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -61,7 +61,7 @@ class PE18NavegacionDetalleArtistas {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Artistas")))
+        textView.check(matches(withText("Lista de Artistas")))
 
 
         val recyclerView = onView(
@@ -77,7 +77,7 @@ class PE18NavegacionDetalleArtistas {
         Thread.sleep(1000)
         val textView3 = onView(
             allOf(
-                withText("Artistas para tí"),
+                withText("Detalle de Artistas"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -87,7 +87,7 @@ class PE18NavegacionDetalleArtistas {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("Artistas para tí")))
+        textView3.check(matches(withText("Detalle de Artistas")))
     }
 
     private fun childAtPosition(

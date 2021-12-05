@@ -29,14 +29,15 @@ class MusicianDetailFragment : Fragment() {
         var view = binding.root
         return view
     }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.root.announceForAccessibility(getString(R.string.detalleartista))
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
         val args: MusicianDetailFragmentArgs by navArgs()
-        activity.actionBar?.title = getString(R.string.tiartistas)
         viewModel = ViewModelProvider(this, MusicianViewModel.Factory(activity.application)).get(
             MusicianViewModel::class.java)
         var finalDate = viewModel.formateandoDate(args.birthDate)

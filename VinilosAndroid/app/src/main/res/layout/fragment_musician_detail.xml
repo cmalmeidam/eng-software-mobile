@@ -6,17 +6,19 @@
         <variable name="musician"
             type="com.example.vinilosandroid.models.Musician"/>
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        tools:context=".ui.MusicianDetailFragment">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        tools:context=".ui.MusicianDetailFragment"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView11"
@@ -35,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@{musician.name}"
+                android:contentDescription="@{@string/content(musician.name)}"
                 tools:srcCompat="@drawable/ic_artist" />
 
             <TextView
@@ -85,6 +87,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
+    </ScrollView>
 </layout>

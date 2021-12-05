@@ -3,10 +3,8 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -17,7 +15,6 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,7 +32,7 @@ class PE10ImagenesAlbumes {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -49,23 +46,23 @@ class PE10ImagenesAlbumes {
         bottomNavigationItemView.perform(click())
 
         Thread.sleep(1000)
-        onView(withContentDescription("Buscando América"))
+        onView(withContentDescription("Imagen de Buscando América 100"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Thread.sleep(1000)
-        onView(withContentDescription("Poeta del pueblo"))
+        onView(withContentDescription("Imagen de Poeta del pueblo 101"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
         Thread.sleep(1000)
 
-        onView(withContentDescription("A Night at the Opera"))
+        onView(withContentDescription("Imagen de A Night at the Opera 102"))
             .perform(scrollTo())
             .check(matches(isDisplayed()))
 
         Thread.sleep(1000)
 
-        onView(withContentDescription("A Day at the Races")).perform(scrollTo()).check(matches(isDisplayed()))
+        onView(withContentDescription("Imagen de A Day at the Races 103")).perform(scrollTo()).check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(

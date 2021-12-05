@@ -4,7 +4,6 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -32,19 +31,19 @@ class PE04NombresBarraNavegacion {
         Thread.sleep(100)
         val textView = onView(
             allOf(
-                withId(R.id.largeLabel), withText("Albumes"),
+                withId(R.id.largeLabel), withText("Álbumes"),
                 withParent(
                     withParent(
                         allOf(
                             withId(R.id.albumFragment),
-                            withContentDescription("Albumes")
+                            withContentDescription("Álbumes")
                         )
                     )
                 ),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Albumes")))
+        textView.check(matches(withText("Álbumes")))
         Thread.sleep(100)
         val textView2 = onView(
             allOf(

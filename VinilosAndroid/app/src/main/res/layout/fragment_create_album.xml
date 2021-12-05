@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CreateAlbumFragment">
+    tools:context=".ui.CreateAlbumFragment"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
+    android:layout_marginTop="20dp">
 
-
-    <EditText
-        android:id="@+id/textInputLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/albumname"
-        android:layout_width="193dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/albumNameTitle"
+        android:gravity="center"
+        app:theme="@style/EditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="15dp"/>
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/albumcover"
-        android:layout_width="193dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/albumCoverURLTitle"
+        android:gravity="center"
+        app:theme="@style/EditText"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/albumname"
@@ -36,84 +42,95 @@
 
     <EditText
         android:id="@+id/albumdescription"
-        android:layout_width="193dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/albumDescriptionTitle"
+        android:gravity="center"
+        app:theme="@style/EditText"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/albumcover" />
 
+    <TextView
+        android:id="@+id/albumDateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:text="@string/fecha_lanz_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/albumdescription" />
 
     <EditText
-        android:id="@+id/albumReleaseDate"
-        android:layout_width="195dp"
+        android:id="@+id/albumRelease"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
         android:hint="@string/albumdateformat"
+        android:gravity="center"
         android:layout_marginTop="2dp"
+        app:theme="@style/EditText"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/albumDateTitle" />
 
+    <LinearLayout
+        android:id="@+id/selectores"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/albumRelease"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    <TextView
+        android:id="@+id/albumGenreSelectorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genero_title"
+        android:gravity="center"
+        android:layout_marginTop="2dp" />
+
+    <Spinner
+        android:id="@+id/genreSelector"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:entries="@array/musicGenres"
+        android:gravity="center"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/albumRecordLabelSelectorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/albumRecordLabelSelectorTitle"
+        android:gravity="center"
+        android:layout_marginTop="2dp" />
+    <Spinner
+        android:id="@+id/recordLabelSelector"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:entries="@array/recordLabels"
+        android:layout_marginTop="2dp" />
+    </LinearLayout>
     <Button
         android:id="@+id/crearAlbumBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/createAlbum"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/recordLabelSelector" />
-
-    <Spinner
-        android:id="@+id/genreSelector"
-        android:layout_width="196dp"
-        android:layout_height="48dp"
-        android:entries="@array/musicGenres"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/albumGenreSelectorTitle" />
-
-    <Spinner
-        android:id="@+id/recordLabelSelector"
-        android:layout_width="196dp"
-        android:layout_height="48dp"
-        android:entries="@array/recordLabels"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/albumRecordLabelSelectorTitle" />
-
-    <TextView
-        android:id="@+id/albumDateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fecha_lanz_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/albumdescription" />
-
-    <TextView
-        android:id="@+id/albumGenreSelectorTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/genero_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/albumReleaseDate" />
-
-    <TextView
-        android:id="@+id/albumRecordLabelSelectorTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/albumRecordLabelSelectorTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/genreSelector" />
+        app:layout_constraintTop_toBottomOf="@id/selectores"
+        android:contentDescription="@string/contentbotoncrear"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

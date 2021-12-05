@@ -13,6 +13,7 @@ import com.example.vinilosandroid.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.vinilosandroid.models.Track
 import org.json.JSONException
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -86,24 +87,65 @@ class NetworkServiceAdapter  constructor(context: Context) {
                 cont.resumeWithException(it)
             }))
     }
+    suspend fun getTracks(albumId:Int) = suspendCoroutine<List<Track>>{ cont->
+        requestQueue.add(getRequest("albums/$albumId/tracks",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Track>()
+                var item:JSONObject? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    val track = Track(trackId = item.getInt("id"), name = item.getString("name"), duration = item.getString("duration"))
+                    list.add(i,track)
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    suspend fun postTrack(albumId:Int, track:Track) = suspendCoroutine<String> { cont ->
+        var postData = JSONObject()
+        try {
+            postData.put("name", track.name)
+            postData.put("duration", track.duration)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requestQueue.add(
+            postRequest("albums/$albumId/tracks", postData,
+                {response ->
+                    JSONArray(response)
+                cont.resume("success")
+            },            {
+                cont.resumeWithException(it)
+            }
+            ))
+    }
 
     suspend fun postAlbum(
-        albumName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
+        album:Album
     ) = suspendCoroutine<String>{ cont->
-        requestQueue.add(postRequest(
+        var postData = JSONObject()
+        try {
+            postData.put("name", album.name)
+            postData.put("cover", album.cover)
+            postData.put("releaseDate", album.releaseDate)
+            postData.put("description", album.description)
+            postData.put("genre", album.genre)
+            postData.put("recordLabel", album.recordLabel)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requestQueue.add(postRequest("albums", postData,
             { response ->
                 JSONArray(response)
                 cont.resume("success")
             },
             {
                 cont.resumeWithException(it)
-            },
-            albumName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate
+            }
         ))
     }
 
@@ -111,36 +153,12 @@ class NetworkServiceAdapter  constructor(context: Context) {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
     }
 
-    private fun postRequest(
-        responseListener: Response.Listener<String>,
-        errorListener: Response.ErrorListener,
-        albumName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
-    ): JsonObjectRequest {
-        val postUrl: String = BASE_URL + "albums"
-        val postData = JSONObject()
-        try {
-            postData.put("name", albumName)
-            postData.put("cover", albumCover)
-            postData.put("releaseDate", albumDate)
-            postData.put("description", albumDescription)
-            postData.put("genre", albumGenre)
-            postData.put("recordLabel", albumRecordLabel)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
+    private fun postRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
+        println(body)
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, postUrl, postData,
+            Request.Method.POST, BASE_URL+path, body,
             { response -> println(response) }
         ) { error -> error.printStackTrace() }
-
-        return jsonObjectRequest
-
+        return  jsonObjectRequest
     }
-
 }

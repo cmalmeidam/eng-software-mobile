@@ -1,20 +1,10 @@
 package com.example.vinilosandroid.viewmodels
 
-import android.app.Activity
 import android.app.Application
-import android.text.TextUtils
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import com.example.vinilosandroid.databinding.FragmentCreateAlbumBinding
 import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.repositories.AlbumsRepository
-import com.example.vinilosandroid.ui.CreateAlbumFragmentDirections
-import java.lang.Exception
-import java.text.SimpleDateFormat
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
 
@@ -43,6 +33,8 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
                 withContext(Dispatchers.IO){
                     var data = albumsRepository.refreshData()
                     _albums.postValue(data)
+                    println("esta es la lista de albumes refresh")
+                    println(data.size)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -53,68 +45,55 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         }
     }
 
-    fun onNetworkErrorShown() {
-        _isNetworkErrorShown.value = true
+   suspend fun refreshDataFromNetwork2() {
+       
+        try {
+            var job = viewModelScope.launch (Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    var data = albumsRepository.refreshData2()
+                    _albums.postValue(data)
+                    println("esta es la lista de albumes refresh2")
+                    println(data.size)
+                }
+            }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+                delay(4000)
+                job.cancelAndJoin()
+            }
+        catch (e:Exception){
+            _albums
+        }
     }
     fun postDataFromNetwork(
-        application: Application,
-        albumnName: String,
-        albumCover: String,
-        albumGenre: String,
-        albumDescription: String,
-        albumRecordLabel: String,
-        albumDate: String
+        album:Album
     ) {
         try {
-            val albumsRepository = AlbumsRepository(application)
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
                     albumsRepository.postData(
-                        albumnName,
-                        albumCover,
-                        albumGenre,
-                        albumDescription,
-                        albumRecordLabel,
-                        albumDate
+                        album
                     )
                 }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
             }
         } catch (e: Exception) {
             _eventNetworkError.value = true
+            println("entra a catch")
+        } finally {
+            try {
+                viewModelScope.launch(Dispatchers.Default) {
+                    withContext(Dispatchers.IO) {
+                        refreshDataFromNetwork2()
+                    }
+                }
+            }catch (e: Exception) {
+                println("job: I'm cancel finally")}
         }
     }
-    fun processInformation(_binding : FragmentCreateAlbumBinding, activity: Activity){
-        if(!TextUtils.isEmpty(_binding!!.albumname.text) && !TextUtils.isEmpty(_binding!!.albumcover.text) && !TextUtils.isEmpty(_binding!!.albumdescription.text) && !TextUtils.isEmpty(_binding!!.albumReleaseDate.text)) {
-            try {
-                val albumnName = _binding!!.albumname.text.toString()
-                val albumCover = _binding!!.albumcover.text.toString()
-                val albumGenre = _binding!!.genreSelector.selectedItem.toString()
-                val albumDescription = _binding!!.albumdescription.text.toString()
-                val albumRecordLabel = _binding!!.recordLabelSelector.selectedItem.toString()
-                var albumDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(SimpleDateFormat("dd/MM/yyyy").parse(_binding!!.albumReleaseDate.text.toString()))
-                postDataFromNetwork(activity.application, albumnName, albumCover, albumGenre, albumDescription, albumRecordLabel, albumDate)
-                val action = CreateAlbumFragmentDirections.actionCreateAlbumToAlbumDetailFragment(
-                    0,
-                    albumDescription,
-                    albumCover,
-                    albumGenre,
-                    albumnName,
-                    albumRecordLabel,
-                    albumDate)
-                _binding!!.crearAlbumBtn.findNavController().navigate(action)
-            } catch (e: Exception) {
-                Toast.makeText(activity,e.message, Toast.LENGTH_LONG).show()
-                println(e)
-            }
-        } else {
-            when(TextUtils.isEmpty(_binding!!.albumname.text) || TextUtils.isEmpty(_binding!!.albumcover.text) || TextUtils.isEmpty(_binding!!.albumdescription.text) || TextUtils.isEmpty(_binding!!.albumReleaseDate.text)){
-                TextUtils.isEmpty(_binding!!.albumname.text) -> Toast.makeText(activity,"El nombre no puede estar vacio", Toast.LENGTH_LONG).show()
-                TextUtils.isEmpty(_binding!!.albumReleaseDate.text) -> Toast.makeText(activity,"La fecha no puede estar vacia", Toast.LENGTH_LONG).show()
-                TextUtils.isEmpty(_binding!!.albumcover.text) -> Toast.makeText(activity,"La url de la portada del album no puede estar vacia", Toast.LENGTH_LONG).show()
-                TextUtils.isEmpty(_binding!!.albumdescription.text) -> Toast.makeText(activity,"La descripcion no puede estar vacia", Toast.LENGTH_LONG).show()
-
-            }
-        }
+    fun onNetworkErrorShown() {
+        _isNetworkErrorShown.value = true
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
@@ -126,5 +105,6 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
+
 }
 

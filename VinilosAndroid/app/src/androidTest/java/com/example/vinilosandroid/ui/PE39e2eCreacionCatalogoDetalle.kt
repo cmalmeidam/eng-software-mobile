@@ -4,16 +4,13 @@ package com.example.vinilosandroid.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import com.example.vinilosandroid.R
-import com.example.vinilosandroid.network.NetworkServiceAdapter
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
@@ -53,15 +50,11 @@ class PE39e2eCreacionCatalogoDetalle {
         val inputNombreAlbum = onView(
             allOf(
                 withId(R.id.albumname),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    1
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
@@ -70,16 +63,12 @@ class PE39e2eCreacionCatalogoDetalle {
 
         val inputFechaDeLanzamiento = onView(
             allOf(
-                withId(R.id.albumReleaseDate),
-                childAtPosition(
+                withId(R.id.albumRelease),
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    4
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
@@ -89,38 +78,30 @@ class PE39e2eCreacionCatalogoDetalle {
         val inputURLCoverAlbum = onView(
             allOf(
                 withId(R.id.albumcover),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    2
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
-
         inputURLCoverAlbum.perform(
             replaceText("https://m.media-amazon.com/images/I/81-wt1kTStL._SL1500_.jpg"),
         )
+
 
         Thread.sleep(50)
 
         val inputAlbumDescription = onView(
             allOf(
                 withId(R.id.albumdescription),
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    3
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
                 ),
                 isDisplayed()
             )
@@ -130,20 +111,15 @@ class PE39e2eCreacionCatalogoDetalle {
 
         val materialButton = onView(
             allOf(
-                withId(R.id.crearAlbumBtn), withText("Crear Album"),
-                childAtPosition(
+                withId(R.id.crearAlbumBtn), withText("Crear Álbum"),
+                withParent(
                     allOf(
                         withId(R.id.frameLayout),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment),
-                            0
-                        )
-                    ),
-                    5
-                ),
-                isDisplayed()
-            )
-        )
+                        withParent(IsInstanceOf.instanceOf(android.widget.ScrollView::class.java))
+                    )
+                ))).perform(scrollTo())
+            .check(matches(isDisplayed()))
+
         materialButton.perform(click())
 
         val textView = onView(
@@ -157,7 +133,7 @@ class PE39e2eCreacionCatalogoDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),

@@ -48,7 +48,7 @@ class PE25CancelarCreacion {
 
         val textView = onView(
             allOf(
-                withText("Crear Album"),
+                withText("Crear Álbum"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -58,7 +58,7 @@ class PE25CancelarCreacion {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Crear Album")))
+        textView.check(matches(withText("Crear Álbum")))
 
         val appCompatImageButton2 = onView(
             allOf(
@@ -80,7 +80,7 @@ class PE25CancelarCreacion {
 
         val textView2 = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -90,7 +90,7 @@ class PE25CancelarCreacion {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        textView2.check(matches(withText("Lista de Álbumes")))
     }
 
     private fun childAtPosition(

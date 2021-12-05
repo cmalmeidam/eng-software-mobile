@@ -3,12 +3,10 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -37,7 +35,7 @@ class PE37NavegacionBackArrowDetalle {
         Thread.sleep(1000)
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.albumFragment), withContentDescription("Albumes"),
+                withId(R.id.albumFragment), withContentDescription("Álbumes"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.bottomnav),
@@ -89,7 +87,7 @@ class PE37NavegacionBackArrowDetalle {
         Thread.sleep(1000)
         val textView2 = onView(
             allOf(
-                withText("Albumes"),
+                withText("Lista de Álbumes"),
                 withParent(
                     allOf(
                         withId(R.id.my_toolbar),
@@ -99,7 +97,7 @@ class PE37NavegacionBackArrowDetalle {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Albumes")))
+        textView2.check(matches(withText("Lista de Álbumes")))
     }
 
     private fun childAtPosition(

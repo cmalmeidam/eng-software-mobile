@@ -8,13 +8,34 @@
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.vinilosandroid.ui.CollectorFragment"
-        android:label="@string/coleccionistas"
+        android:label="@string/listacoleccionistas"
         tools:layout="@layout/collector_fragment" >
+        <action
+            android:id="@+id/action_collectorFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="com.example.vinilosandroid.ui.CollectorDetailFragment"
+        android:label="@string/detallecolec"
+        tools:layout="@layout/fragment_collector_detail">
+        <argument
+            android:name="collectorId"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="telephone"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.vinilosandroid.ui.AlbumFragment"
-        android:label="@string/albumes"
+        android:label="@string/listaalbumes"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
@@ -26,8 +47,8 @@
     <fragment
         android:id="@+id/musicianFragment"
         android:name="com.example.vinilosandroid.ui.MusicianFragment"
-        android:label="@string/artistas"
-        tools:layout="@layout/musician_fragment" >
+        android:label="@string/listaartistas"
+        tools:layout="@layout/musician_fragment">
         <action
             android:id="@+id/action_musicianFragment_to_musicianDetailFragment"
             app:destination="@id/musicianDetailFragment" />
@@ -35,11 +56,8 @@
     <fragment
         android:id="@+id/musicianDetailFragment"
         android:name="com.example.vinilosandroid.ui.MusicianDetailFragment"
-        android:label="@string/tiartistas"
+        android:label="@string/detalleartista"
         tools:layout="@layout/fragment_musician_detail" >
-        <action
-            android:id="@+id/action_musicianDetailFragment_to_musicianFragment"
-            app:destination="@id/musicianFragment" />
         <argument
             android:name="musicianId"
             app:argType="integer" />
@@ -59,7 +77,7 @@
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.example.vinilosandroid.ui.AlbumDetailFragment"
-        android:label="Detalle Álbum"
+        android:label="@string/detallealbum"
         tools:layout="@layout/album_detail_fragment" >
         <argument
             android:name="albumId"
@@ -82,6 +100,10 @@
         <argument
             android:name="releaseDate"
             app:argType="string" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/createAlbum"
@@ -91,6 +113,27 @@
         <action
             android:id="@+id/action_createAlbum_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment"
-            app:popUpTo="@id/albumFragment" />
+            app:popUpTo="@id/albumFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackFragment"
+        android:name="com.example.vinilosandroid.ui.TrackFragment"
+        android:label="@string/asociar_tracks"
+        tools:layout="@layout/track_fragment" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_trackFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment"
+            app:popUpTo="@id/musicianDetailFragment" />
+        <action
+            android:id="@+id/action_trackFragment_self"
+            app:destination="@id/trackFragment"
+            app:popUpTo="@id/albumDetailFragment" />
     </fragment>
 </navigation>

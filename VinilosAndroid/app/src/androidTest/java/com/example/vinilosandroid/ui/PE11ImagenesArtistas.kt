@@ -47,7 +47,7 @@ class PE11ImagenesArtistas {
         Thread.sleep(1000)
         val imageView = onView(
             allOf(
-                withId(R.id.item_image_iv), withContentDescription("Rubén Blades Bellido de Luna"),
+                withId(R.id.item_image_iv), withContentDescription("Imagen de Rubén Blades Bellido de Luna"),
                 withParent(withParent(IsInstanceOf.instanceOf(androidx.cardview.widget.CardView::class.java))),
                 isDisplayed()
             )
