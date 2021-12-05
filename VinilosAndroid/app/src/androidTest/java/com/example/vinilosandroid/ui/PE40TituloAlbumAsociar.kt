@@ -3,7 +3,6 @@ package com.example.vinilosandroid.ui
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo

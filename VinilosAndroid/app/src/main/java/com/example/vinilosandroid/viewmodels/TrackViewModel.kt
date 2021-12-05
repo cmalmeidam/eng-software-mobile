@@ -2,7 +2,6 @@ package com.example.vinilosandroid.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.vinilosandroid.models.Album
 import com.example.vinilosandroid.models.Track
 import com.example.vinilosandroid.repositories.TracksRepository
 import kotlinx.coroutines.*

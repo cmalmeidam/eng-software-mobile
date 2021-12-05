@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.accessibility.AccessibilityEvent
 import androidx.navigation.fragment.navArgs
 import com.example.vinilosandroid.R
 import com.example.vinilosandroid.databinding.FragmentCollectorDetailBinding
